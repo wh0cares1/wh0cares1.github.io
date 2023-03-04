@@ -1,6 +1,6 @@
 # main links
 main:
-  - title: "Blogs"
-    url: /blogs/
+  - title: "Posts"
+    url: /posts.html
   - title: "About"
-    url: /about/
+    url: /about.html
