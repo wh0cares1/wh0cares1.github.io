@@ -10,7 +10,7 @@
 ## Pointer
 Pointer refers to memory addresses, using that reference we access the value stored in that memory.
 
-![[Pasted image 20230510233656.png]]
+<img src="/images/Pasted image 20230510233656.png">
 
 Use the "`*`" symbol before the variable name in C to declare a pointer. To define a pointer to an integer variable, for example :
 ```c
@@ -31,11 +31,11 @@ printf("%d", *Pointer); //This will give the output of an integer value that is 
 ### Call by value and call by reference
 If we use call by value then any change made in the called function will not reflect in the calling function. Below is an illustration of call by value.
 
-![[Pasted image 20230512113341.png]]
+<img src="/images/Pasted image 20230512113341.png">
 
 If we send the argument via reference, all changes performed in the called method will be reflected in the calling function as well. Below is an illustration of call by reference.
 
-![[Pasted image 20230512113408.png]]
+<img src="/images/Pasted image 20230512113408.png">
 
 ### Pointer Arithmetic
 It is dependent on the data type. For example :
@@ -48,9 +48,9 @@ pointer--; //10000
 
 Assume the value's address is 10000. Then, after incrementing, it points to address 10004 since the data type integer has a 4 bit size. If we decrease, it returns to address 10000.
 
-![[Pasted image 20230512100325.png]]
+<img src="/images/Pasted image 20230512100325.png">
 
-![[Pasted image 20230512100527.png]]
+<img src="/images/Pasted image 20230512100527.png">
 
 ### Void Pointer
 A void pointer is a general-purpose pointer that can be used to store the address of any data type variable. It is not associated with a specific data type and can be used to point to variables of any type. An integer pointer cannot point to a variable of another data type, but a void pointer can point to any variable. 
@@ -101,14 +101,14 @@ The data structure for the stack is LIFO (last-in-first-out). A stack is an abst
 
 Push adds an element to the collection; pop takes away the most recent element that hasn't already been removed from the collection.
 
-![[Pasted image 20230511134023.png]]
+<img src="/images/Pasted image 20230511134023.png">
 
 Local variables, details of function calls, and other information pertaining to function execution are kept in memory in a location known as the stack. It grows or shrinks when functions are called and returned. The stack is usually of restricted size and has a fixed memory allocation pattern.
 
 ### Dynamic (Heap)
 The heap provides runtime memory allocation and deallocation using operations like as malloc(), calloc(), realloc() and free() in [stdlib.h](https://www.ibm.com/docs/en/zos/2.3.0?topic=files-stdlibh-standard-library-functions). It does not follow a preset allocation pattern and is often bigger than the stack because the memory size is dynamically allocated at run-time.
 
-![[Pasted image 20230511135418.png]]
+<img src="/images/Pasted image 20230511135418.png">
 
 ### Corelation of the Stack and Heap
 ```c
@@ -125,7 +125,7 @@ free(pointer); //If the heap are not freed, they cause memory leaks.
 
 When you allocate memory on the heap with methods like malloc or calloc in C programming, the returned reference to the allocated memory is normally saved in a variable on the stack. Although memory is allocated on the heap, the pointer variable that carries the address of the allocated memory is saved on the stack. This lets you to indirectly access and control heap memory via the pointer variable. See the illustration below.
 
-![[Pasted image 20230511140620.png]]
+<img src="/images/Pasted image 20230511140620.png">
 
 ```
 - The stack is used to store the pointer variable, while the pointer is used to manipulate the heap memory itself. 
@@ -143,7 +143,7 @@ int array[5]={1, 2, 3, 4, 5};
 
 Here is an illustration of how arrays are stored in memory. 
 
-![[Pasted image 20230512142938.png]]
+<img src="/images/Pasted image 20230512142938.png">
 
 Variable array will point to the first element in the array 1. Hence variable array will have the address of `arr[0]` so `array` equal to `&arr[0]`. Printing array items with a pointer is the same as dereference with a pointer.
 
@@ -180,7 +180,7 @@ tail->next = NULL;
 
 This is how it looks in memory :
 
-![[Pasted image 20230512120538.png]]
+<img src="/images/Pasted image 20230512120538.png">
 
 This is how to print a linked list.
 
@@ -199,11 +199,11 @@ Start from the head and print the data and repeat till we have node's next equal
 3. Now temp equal to 3024 again check the condition. It is still true. Print the data at address 3024 which is 3. Move temp to the next node. 
 4. Variable temp equal to null since temp next equal to null and it fails.
 
-![[Pasted image 20230512121405.png]]
+<img src="/images/Pasted image 20230512121405.png">
 
 ### Binary Tree
 
-![[Pasted image 20230512123608.png]]
+<img src="/images/Pasted image 20230512123608.png">
 
 Each node will include the data component as well as two pointers to the left and right. Also, a tree is a non-linear data structure of type hierarchical data structure, and these nodes are related, and the links between these nodes are referred to as tree branches.
 
@@ -231,7 +231,7 @@ It is important to note that the fopen function will not directly point the file
 
 So, when we open a file with the fopen function, we attach a buffer to it and it loads the entire file contents into the buffer. The buffer will be stored in random access memory and will collect all file structure information. This file structure comprises buffer size, buffer pointer, current buffer position, and other information, and it returns the file structure pointer to the file pointer.
 
-![[Pasted image 20230512131903.png]]
+<img src="/images/Pasted image 20230512131903.png">
 
 Here are some examples of how pointers are commonly used in file operations:
 1. Pointers are used in file handling to generate and modify file objects. A file object pointer enables activities like opening, shutting, reading, and writing to the file.
