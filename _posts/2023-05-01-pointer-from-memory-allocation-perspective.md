@@ -33,6 +33,14 @@ The "`*`" operator can be used to obtain the value of a variable that a pointer 
 printf("%d", *Pointer); //This will give the output of an integer value that is stored in the variable Value.
 ```
 
+Generally, reading `*` as ‘the thing pointed to by’ is a good way to view `*` in C.
+```c
+int numb; // numb is an int
+int func(); // func() is an int
+int *numb; // *numb is an int
+int *func(); // *func() is an int
+```
+
 ### Call by value and call by reference
 If we use call by value then any change made in the called function will not reflect in the calling function. Below is an illustration of call by value.
 
@@ -43,6 +51,8 @@ If we send the argument via reference, all changes performed in the called metho
 <img src="/images/Pasted image 20230512113408.png">
 
 We have two functions : funct1 and funct2. And we have a cup in funct1. In call by value, we only pass a copy of this cup to funct2. So any change made to this copy in funct2 will not reflect in cup in funct1. But in call by reference we are passing a reference and giving access to the original cup. So any change made to the cup will be reflected in funct1.
+
+It's vital to understand that "pass by reference" in C++ is not the same as "pass by sharing" or "pass by value" in many other languages. A copy of the value is created and provided to the function in "pass by sharing," but "pass by reference" allows direct access to the original variable. A lot of beginners were confused by this. We use C language in this blog, thus pointers, like everything else in C, are passed by value.
 
 ### Pointer Arithmetic
 It is dependent on the data type. For example :
@@ -102,6 +112,16 @@ char *ptrChar = malloc(sizeof(char));
 float *ptrFloat = malloc(sizeof(float));
 ```
 
+### Double Pointer
+In C, when a pointer is supplied as an argument to a function, the function parameter becomes an alias for the original pointer. Modifying the parameter within the method has an impact on the original pointer outside the function, independent of where it is (local variable, array index, object property, etc.).
+```c
+void func(char **pointer) {
+  *pointer = NULL; // Modifying *pointer will also modify the original pointer passed in
+}
+char *a = "a";
+func(&a); // After the function call, a will be NULL
+```
+
 ## Memory Allocation
 ### Static (Stack)
 The data structure for the stack is LIFO (last-in-first-out). A stack is an abstract data type in computer science that acts as a collection of objects and has two main operations:
@@ -134,15 +154,10 @@ When you allocate memory on the heap with methods like malloc or calloc in C pro
 
 <img src="/images/Pasted image 20230511140620.png">
 
-```ad-note
-- The stack is used to store the pointer variable, while the pointer is used to manipulate the heap memory itself. 
-- Pointers are necessary for managing heap memory and ensuring that allocated memory is correctly tracked, used, and deallocated when no longer required.
-```
-
 # Applications
 ## Data Structures
 ### Array
-An array is a collection of variables of the same data type. In C programming language Array and pointers are more or less the same. For example :
+An array is a collection of variables of the same data type. In C programming language array and pointers aren't the same. Arrays are a contiguous block of memory that stores multiple elements of the same type, while pointers are variables that store memory addresses. For example :
 
 ```c
 int array[5]={1, 2, 3, 4, 5};
@@ -161,6 +176,28 @@ for(i=0; i<5; i++){
 	printf("array[%d] = %d\n", i, *(array+i));
 }
 ```
+
+For arrays and pointers, the `sizeof` operator acts differently. `sizeof(array)` returns the array's entire size in bytes, whereas `sizeof(pointer)` returns the size of the pointer itself (usually the size of a memory location).
+```c
+int numb[5];
+int *pointer = numb;
+printf("%zu\n", sizeof(numb));    //20 (assuming sizeof(int) = 4 bit)
+printf("%zu\n", sizeof(pointer));      //8 (assuming 64-bit system)
+```
+
+When an array is used in an expression, it is automatically converted (or "decays") to a pointer to its first element. This pointer represents the memory address where the array starts. This behavior can lead to some confusion and the misconception that "arrays are pointers". So, `sizeof` used within the function would give you the size of the pointer, not the original array.
+
+The square brackets [] are not strictly "array operators" in C and C++, although they are used for array subscripting. `*(a + b)`, where an is a pointer and b is an index, is equivalent to `a[b]`. This similarity is due to pointer arithmetic characteristics, which state that adding an integer value to a pointer moves it by that many elements. Because addition is commutative, both `a[b]` and `b[a]` are valid and have the same meaning. This gives rise to the amusing example of `0["x"]` which is identical to `*(0 + "x")` or `"x"[0]`.
+
+Pointer arithmetic is well-defined in C and C++ for both pointer + integer and integer + pointer expressions. As long as the types are suitable, the result is the same regardless of the order of the operands.
+```c
+int numb = 10;
+int *pointer = &numb;
+int *add1 = pointer + 3;   // Advances the pointer by 3 * sizeof(int) bytes
+int *add2 = 3 + pointer;   // Same as above, order of operands doesn't matter
+```
+The type of operands important in pointer arithmetic because it defines the scaling factor used during the arithmetic operation. It guarantees that the pointer is accurately changed by the required amount of bytes dependent on the size of the underlying type.
+
 
 ### Linked List
 Linked lists are linear data structures with two sections for each node. The data section and the link to the following node. We can save the relevant information in the data section. It can be any data type, such as int, char, float, or double, and the reference component must be a pointer since it will retain the address of the next node. Below is a guide to building a linked list.
@@ -248,6 +285,19 @@ Here are some examples of how pointers are commonly used in file operations:
 5. File pointers are used to keep track of where you are in a file during sequential access. They are automatically incremented or decremented when data is read or written, allowing for quick file content traversal.
 6. Pointers are used to manage and notify problems that arise during file operations. Error codes or error messages can be saved in a pointer variable to reflect the status of the file operation.
 
+# Key Takeaways
+- The stack is used to store the pointer variable, while the pointer is used to manipulate the heap memory itself. 
+- Pointers are necessary for managing heap memory and ensuring that allocated memory is correctly tracked, used, and deallocated when no longer required.
+- Pointera aren't just numbers, but they are vectors that related to the ideas of affine spaces, translations, and distances.
+- Pointers, like everything else in C, are passed by value.
+
+
+# What's next?
+Pointers actually really complicated. In this article, I only managed to give a small example of a pointer, so beginners wouldn't get confused. If you want to understand pointers better, here are some good articles you may find interesting to read.
+[Pointers Are Complicated, or: What's in a Byte?](https://www.ralfj.de/blog/2018/07/24/pointers-and-bytes.html)
+[Pointers Are Complicated II, or: We need better language specs](https://www.ralfj.de/blog/2020/12/14/provenance.html)
+[Pointers Are Complicated III, or: Pointer-integer casts exposed](https://www.ralfj.de/blog/2022/04/11/provenance-exposed.html)
+
 # Resource
 1. [https://www.youtube.com/watch?v=_x1MmVhLOt4&list=PLhb7SOmGNUc4EBVjd7x5TiEyOKXt71whE&index=1&ab_channel=Log2Base2%C2%AE](https://www.youtube.com/watch?v=_x1MmVhLOt4&list=PLhb7SOmGNUc4EBVjd7x5TiEyOKXt71whE&index=1&ab_channel=Log2Base2%C2%AE)
 2. [https://www.w3schools.com/c/c_pointers.php#:~:text=A%20pointer%20is%20a%20variable,another%20variable%20as%20its%20value](https://www.w3schools.com/c/c_pointers.php#:~:text=A%20pointer%20is%20a%20variable,another%20variable%20as%20its%20value)
@@ -258,3 +308,4 @@ Here are some examples of how pointers are commonly used in file operations:
 7. [https://medium.com/fhinkel/confused-about-stack-and-heap-2cf3e6adb771](https://medium.com/fhinkel/confused-about-stack-and-heap-2cf3e6adb771)
 8. [https://www.geeksforgeeks.org/void-pointer-c-cpp/](https://www.geeksforgeeks.org/void-pointer-c-cpp/)
 9. [https://stackoverflow.com/questions/5672746/what-exactly-is-the-file-keyword-in-c](https://stackoverflow.com/questions/5672746/what-exactly-is-the-file-keyword-in-c)
+10. [https://twitter.com/thingskatedid/status/1535708903345750016](https://twitter.com/thingskatedid/status/1535708903345750016}
