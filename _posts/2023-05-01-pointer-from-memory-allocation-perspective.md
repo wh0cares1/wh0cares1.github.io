@@ -294,9 +294,9 @@ Here are some examples of how pointers are commonly used in file operations:
 
 # What's next?
 Pointers actually really complicated. In this article, I only managed to give a small example of a pointer, so beginners wouldn't get confused. If you want to understand pointers better, here are some good articles you may find interesting to read.
-[Pointers Are Complicated, or: What's in a Byte?](https://www.ralfj.de/blog/2018/07/24/pointers-and-bytes.html)
-[Pointers Are Complicated II, or: We need better language specs](https://www.ralfj.de/blog/2020/12/14/provenance.html)
-[Pointers Are Complicated III, or: Pointer-integer casts exposed](https://www.ralfj.de/blog/2022/04/11/provenance-exposed.html)
+- [Pointers Are Complicated, or: What's in a Byte?](https://www.ralfj.de/blog/2018/07/24/pointers-and-bytes.html)
+- [Pointers Are Complicated II, or: We need better language specs](https://www.ralfj.de/blog/2020/12/14/provenance.html)
+- [Pointers Are Complicated III, or: Pointer-integer casts exposed](https://www.ralfj.de/blog/2022/04/11/provenance-exposed.html)
 
 # Resource
 1. [https://www.youtube.com/watch?v=_x1MmVhLOt4&list=PLhb7SOmGNUc4EBVjd7x5TiEyOKXt71whE&index=1&ab_channel=Log2Base2%C2%AE](https://www.youtube.com/watch?v=_x1MmVhLOt4&list=PLhb7SOmGNUc4EBVjd7x5TiEyOKXt71whE&index=1&ab_channel=Log2Base2%C2%AE)
@@ -308,4 +308,4 @@ Pointers actually really complicated. In this article, I only managed to give a 
 7. [https://medium.com/fhinkel/confused-about-stack-and-heap-2cf3e6adb771](https://medium.com/fhinkel/confused-about-stack-and-heap-2cf3e6adb771)
 8. [https://www.geeksforgeeks.org/void-pointer-c-cpp/](https://www.geeksforgeeks.org/void-pointer-c-cpp/)
 9. [https://stackoverflow.com/questions/5672746/what-exactly-is-the-file-keyword-in-c](https://stackoverflow.com/questions/5672746/what-exactly-is-the-file-keyword-in-c)
-10. [https://twitter.com/thingskatedid/status/1535708903345750016](https://twitter.com/thingskatedid/status/1535708903345750016}
+10. [https://twitter.com/thingskatedid/status/1535708903345750016](https://twitter.com/thingskatedid/status/1535708903345750016)
