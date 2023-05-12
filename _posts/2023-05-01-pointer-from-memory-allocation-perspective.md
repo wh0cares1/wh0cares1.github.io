@@ -1,4 +1,5 @@
 ---
+classes: wide
 toc: true
 ---
 
