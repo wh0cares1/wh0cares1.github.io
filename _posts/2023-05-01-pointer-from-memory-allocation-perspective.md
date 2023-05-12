@@ -288,9 +288,8 @@ Here are some examples of how pointers are commonly used in file operations:
 # Key Takeaways
 - The stack is used to store the pointer variable, while the pointer is used to manipulate the heap memory itself. 
 - Pointers are necessary for managing heap memory and ensuring that allocated memory is correctly tracked, used, and deallocated when no longer required.
-- Pointera aren't just numbers, but they are vectors that related to the ideas of affine spaces, translations, and distances.
+- Pointers aren't just numbers, but they are vectors that related to the ideas of affine spaces, translations, and distances.
 - Pointers, like everything else in C, are passed by value.
-
 
 # What's next?
 Pointers actually really complicated. In this article, I only managed to give a small example of a pointer, so beginners wouldn't get confused. If you want to understand pointers better, here are some good articles you may find interesting to read.
