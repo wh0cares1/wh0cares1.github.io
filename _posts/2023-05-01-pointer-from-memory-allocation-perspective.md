@@ -5,7 +5,7 @@
 - The address can be represented in decimal or hexadecimal values.
 - Basic data types like character, integer, float, and double use different amounts of [memory](https://learn.microsoft.com/en-us/cpp/cpp/data-type-ranges?view=msvc-170).
 
-![[/images/Pasted image 20230511191759.png]]
+<img src="/images/Pasted image 20230511191759.png">
 
 ## Pointer
 Pointer refers to memory addresses, using that reference we access the value stored in that memory.
