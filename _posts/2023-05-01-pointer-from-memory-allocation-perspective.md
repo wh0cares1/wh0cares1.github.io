@@ -243,11 +243,11 @@ Here are some examples of how pointers are commonly used in file operations:
 
 # Resource
 1. [https://www.youtube.com/watch?v=_x1MmVhLOt4&list=PLhb7SOmGNUc4EBVjd7x5TiEyOKXt71whE&index=1&ab_channel=Log2Base2%C2%AE](https://www.youtube.com/watch?v=_x1MmVhLOt4&list=PLhb7SOmGNUc4EBVjd7x5TiEyOKXt71whE&index=1&ab_channel=Log2Base2%C2%AE)
-2. https://www.w3schools.com/c/c_pointers.php#:~:text=A%20pointer%20is%20a%20variable,another%20variable%20as%20its%20value
-3. https://www.youtube.com/watch?v=h-HBipu_1P0&ab_channel=mycodeschool
-4. https://courses.engr.illinois.edu/cs225/fa2022/resources/stack-heap/
-5. https://www.youtube.com/watch?v=X1DcpcgSUXw&ab_channel=mycodeschool
-6. https://medium.com/@shoheiyokoyama/understanding-memory-layout-4ef452c2e709
-7. https://medium.com/fhinkel/confused-about-stack-and-heap-2cf3e6adb771
-8. https://www.geeksforgeeks.org/void-pointer-c-cpp/
-9. https://stackoverflow.com/questions/5672746/what-exactly-is-the-file-keyword-in-c
+2. [https://www.w3schools.com/c/c_pointers.php#:~:text=A%20pointer%20is%20a%20variable,another%20variable%20as%20its%20value](https://www.w3schools.com/c/c_pointers.php#:~:text=A%20pointer%20is%20a%20variable,another%20variable%20as%20its%20value)
+3. [https://www.youtube.com/watch?v=h-HBipu_1P0&ab_channel=mycodeschool](https://www.youtube.com/watch?v=h-HBipu_1P0&ab_channel=mycodeschool)
+4. [https://courses.engr.illinois.edu/cs225/fa2022/resources/stack-heap/](https://courses.engr.illinois.edu/cs225/fa2022/resources/stack-heap/)
+5. [https://www.youtube.com/watch?v=X1DcpcgSUXw&ab_channel=mycodeschool](https://www.youtube.com/watch?v=X1DcpcgSUXw&ab_channel=mycodeschool)
+6. [https://medium.com/@shoheiyokoyama/understanding-memory-layout-4ef452c2e709](https://medium.com/@shoheiyokoyama/understanding-memory-layout-4ef452c2e709)
+7. [https://medium.com/fhinkel/confused-about-stack-and-heap-2cf3e6adb771](https://medium.com/fhinkel/confused-about-stack-and-heap-2cf3e6adb771)
+8. [https://www.geeksforgeeks.org/void-pointer-c-cpp/](https://www.geeksforgeeks.org/void-pointer-c-cpp/)
+9. [https://stackoverflow.com/questions/5672746/what-exactly-is-the-file-keyword-in-c](https://stackoverflow.com/questions/5672746/what-exactly-is-the-file-keyword-in-c)
