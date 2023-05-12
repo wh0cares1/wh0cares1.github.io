@@ -242,7 +242,7 @@ Here are some examples of how pointers are commonly used in file operations:
 6. Pointers are used to manage and notify problems that arise during file operations. Error codes or error messages can be saved in a pointer variable to reflect the status of the file operation.
 
 # Resource
-1. [https://www.youtube.com/watch?v=_x1MmVhLOt4&list=PLhb7SOmGNUc4EBVjd7x5TiEyOKXt71whE&index=1&ab_channel=Log2Base2%C2%AE]
+1. [https://www.youtube.com/watch?v=_x1MmVhLOt4&list=PLhb7SOmGNUc4EBVjd7x5TiEyOKXt71whE&index=1&ab_channel=Log2Base2%C2%AE](https://www.youtube.com/watch?v=_x1MmVhLOt4&list=PLhb7SOmGNUc4EBVjd7x5TiEyOKXt71whE&index=1&ab_channel=Log2Base2%C2%AE)
 2. https://www.w3schools.com/c/c_pointers.php#:~:text=A%20pointer%20is%20a%20variable,another%20variable%20as%20its%20value
 3. https://www.youtube.com/watch?v=h-HBipu_1P0&ab_channel=mycodeschool
 4. https://courses.engr.illinois.edu/cs225/fa2022/resources/stack-heap/
