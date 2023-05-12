@@ -134,7 +134,7 @@ When you allocate memory on the heap with methods like malloc or calloc in C pro
 
 <img src="/images/Pasted image 20230511140620.png">
 
-```
+```ad-note
 - The stack is used to store the pointer variable, while the pointer is used to manipulate the heap memory itself. 
 - Pointers are necessary for managing heap memory and ensuring that allocated memory is correctly tracked, used, and deallocated when no longer required.
 ```
