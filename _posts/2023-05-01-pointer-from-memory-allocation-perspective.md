@@ -1,3 +1,7 @@
+---
+toc: true
+---
+
 # Memory
 ## Basic Memory
 - Computer memory is a linear sequence of bytes.
