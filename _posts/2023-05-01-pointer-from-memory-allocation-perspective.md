@@ -31,11 +31,13 @@ printf("%d", *Pointer); //This will give the output of an integer value that is 
 ### Call by value and call by reference
 If we use call by value then any change made in the called function will not reflect in the calling function. Below is an illustration of call by value.
 
-<img src="/images/Pasted image 20230512113341.png">
+<img src="/images/Pasted image 20230512152642.png">
 
 If we send the argument via reference, all changes performed in the called method will be reflected in the calling function as well. Below is an illustration of call by reference.
 
 <img src="/images/Pasted image 20230512113408.png">
+
+We have two functions : funct1 and funct2. And we have a cup in funct1. In call by value, we only pass a copy of this cup to funct2. So any change made to this copy in funct2 will not reflect in cup in funct1. But in call by reference we are passing a reference and giving access to the original cup. So any change made to the cup will be reflected in funct1.
 
 ### Pointer Arithmetic
 It is dependent on the data type. For example :
