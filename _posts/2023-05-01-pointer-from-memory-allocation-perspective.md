@@ -1,13 +1,13 @@
-## Memory
-### Basic Memory
+# Memory
+## Basic Memory
 - Computer memory is a linear sequence of bytes.
 - Each byte in memory has a unique address.
 - The address can be represented in decimal or hexadecimal values.
 - Basic data types like character, integer, float, and double use different amounts of [memory](https://learn.microsoft.com/en-us/cpp/cpp/data-type-ranges?view=msvc-170).
 
-![[Pasted image 20230511191759.png]]
+![[/images/Pasted image 20230511191759.png]]
 
-### Pointer
+## Pointer
 Pointer refers to memory addresses, using that reference we access the value stored in that memory.
 
 ![[Pasted image 20230510233656.png]]
@@ -28,7 +28,7 @@ The "`*`" operator can be used to obtain the value of a variable that a pointer 
 printf("%d", *Pointer); //This will give the output of an integer value that is stored in the variable Value.
 ```
 
-#### Call by value and call by reference
+### Call by value and call by reference
 If we use call by value then any change made in the called function will not reflect in the calling function. Below is an illustration of call by value.
 
 ![[Pasted image 20230512113341.png]]
@@ -37,7 +37,7 @@ If we send the argument via reference, all changes performed in the called metho
 
 ![[Pasted image 20230512113408.png]]
 
-#### Pointer Arithmetic
+### Pointer Arithmetic
 It is dependent on the data type. For example :
 ```c
 int value = 100;
@@ -52,7 +52,7 @@ Assume the value's address is 10000. Then, after incrementing, it points to addr
 
 ![[Pasted image 20230512100527.png]]
 
-#### Void Pointer
+### Void Pointer
 A void pointer is a general-purpose pointer that can be used to store the address of any data type variable. It is not associated with a specific data type and can be used to point to variables of any type. An integer pointer cannot point to a variable of another data type, but a void pointer can point to any variable. 
 
 ```c
@@ -86,7 +86,7 @@ printf("pointer = %p\n", pointer);
 printf("pointer+1 = %p\n", (int*)pointer+1);
 ```
 
-##### Application in malloc() and calloc()
+#### Application in malloc() and calloc()
 Instead of having a variety of data types for malloc and calloc, we may write a single generic malloc method that returns void*. It must be typecast to the required type. However, typecasting is done directly by the compiler in C. This is how we can utilize a pointer to build a generic function or program that can handle any data type. 
 
 ```c
@@ -95,8 +95,8 @@ char *ptrChar = malloc(sizeof(char));
 float *ptrFloat = malloc(sizeof(float));
 ```
 
-### Memory Allocation
-#### Static (Stack)
+## Memory Allocation
+### Static (Stack)
 The data structure for the stack is LIFO (last-in-first-out). A stack is an abstract data type in computer science that acts as a collection of objects and has two main operations:
 
 Push adds an element to the collection; pop takes away the most recent element that hasn't already been removed from the collection.
@@ -105,12 +105,12 @@ Push adds an element to the collection; pop takes away the most recent element t
 
 Local variables, details of function calls, and other information pertaining to function execution are kept in memory in a location known as the stack. It grows or shrinks when functions are called and returned. The stack is usually of restricted size and has a fixed memory allocation pattern.
 
-#### Dynamic (Heap)
+### Dynamic (Heap)
 The heap provides runtime memory allocation and deallocation using operations like as malloc(), calloc(), realloc() and free() in [stdlib.h](https://www.ibm.com/docs/en/zos/2.3.0?topic=files-stdlibh-standard-library-functions). It does not follow a preset allocation pattern and is often bigger than the stack because the memory size is dynamically allocated at run-time.
 
 ![[Pasted image 20230511135418.png]]
 
-#### Corelation of the Stack and Heap
+### Corelation of the Stack and Heap
 ```c
 int *pointer; //pointer to integer
 pointer = malloc(5 * sizeof(int)); //Allocate heap memory with size 5 * 4 bytes
@@ -132,9 +132,9 @@ When you allocate memory on the heap with methods like malloc or calloc in C pro
 - Pointers are necessary for managing heap memory and ensuring that allocated memory is correctly tracked, used, and deallocated when no longer required.
 ```
 
-## Applications
-### Data Structures
-#### Array
+# Applications
+## Data Structures
+### Array
 An array is a collection of variables of the same data type. In C programming language Array and pointers are more or less the same. For example :
 
 ```c
@@ -155,7 +155,7 @@ for(i=0; i<5; i++){
 }
 ```
 
-#### Linked List
+### Linked List
 Linked lists are linear data structures with two sections for each node. The data section and the link to the following node. We can save the relevant information in the data section. It can be any data type, such as int, char, float, or double, and the reference component must be a pointer since it will retain the address of the next node. Below is a guide to building a linked list.
 
 ```c
@@ -201,13 +201,13 @@ Start from the head and print the data and repeat till we have node's next equal
 
 ![[Pasted image 20230512121405.png]]
 
-#### Binary Tree
+### Binary Tree
 
 ![[Pasted image 20230512123608.png]]
 
 Each node will include the data component as well as two pointers to the left and right. Also, a tree is a non-linear data structure of type hierarchical data structure, and these nodes are related, and the links between these nodes are referred to as tree branches.
 
-### Embedded System
+## Embedded System
 Because of their ability to effectively change memory locations and access hardware registers, pointers are widely utilized in embedded system programming such as:
 1. Pointers can be used to allocate and deallocate dynamic memory, manage memory pools, and build data structures such as linked lists, stacks, and queues.
 2. Pointers are used to directly access and control peripheral devices and hardware registers by mapping them to specified memory addresses. This enables effective interaction with hardware components.
@@ -215,14 +215,14 @@ Because of their ability to effectively change memory locations and access hardw
 4. Pointers are used to store and alter interrupt service routine (ISR) addresses, allowing for efficient hardware interrupt management and event-driven programming.
 5. Pointers make data manipulation more efficient, especially when big data sets or complicated data structures must be handled or altered.
 
-### File Operations
+## File Operations
 Files are stored in the ROM of the read only memory. We can efficiently access the files using file pointers. The syntax to create a file pointer is
 
 ```c
 FILE *file_pointer;
 ```
 
-#### Open File
+### Open File
 ```c
 //Open a file
 FILE *file_pointer = fopen("file_name.txt", "r");
@@ -241,7 +241,7 @@ Here are some examples of how pointers are commonly used in file operations:
 5. File pointers are used to keep track of where you are in a file during sequential access. They are automatically incremented or decremented when data is read or written, allowing for quick file content traversal.
 6. Pointers are used to manage and notify problems that arise during file operations. Error codes or error messages can be saved in a pointer variable to reflect the status of the file operation.
 
-## Resource
+# Resource
 1. https://www.youtube.com/watch?v=_x1MmVhLOt4&list=PLhb7SOmGNUc4EBVjd7x5TiEyOKXt71whE&index=1&ab_channel=Log2Base2%C2%AE
 2. https://www.w3schools.com/c/c_pointers.php#:~:text=A%20pointer%20is%20a%20variable,another%20variable%20as%20its%20value
 3. https://www.youtube.com/watch?v=h-HBipu_1P0&ab_channel=mycodeschool
