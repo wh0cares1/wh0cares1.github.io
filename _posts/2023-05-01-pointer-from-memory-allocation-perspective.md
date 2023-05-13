@@ -122,6 +122,76 @@ char *a = "a";
 func(&a); // After the function call, a will be NULL
 ```
 
+### Pointer to Structure
+Structures (also known as structs) are a means to gather together multiple related variables in one location. Each variable in the structure is referred to as a structure member. A structure, unlike an array, may hold a wide range of data types (int, float, char, and so on).
+
+```c
+struct people{
+	char name[5];
+	int age;
+};
+
+struct people person1 = {"John", 24};
+struct people *pointer = &person1;
+printf("Name : %s\n", (*pointer).name);
+printf("Age : %d\n", (*pointer).age);
+```
+
+This is how structs looks in memory.
+
+<img src="/images/struct.png">
+
+We create a structure pointer with variable `pointer` and assign the address of `person1` which is 10024 to it. Then access structure members using pointers. Here, `pointer` is pointing to structure variable `person1`. So dereferencing `pointer` variable like `*pointer` is functionally equivalent to structure variable `person1`. To access the member we have to use the member access operator dot(.) so we can use `*pointer.structure_member`. But since dot operator has higher precedence over the indirection operator `*`, we have to use parenthesis around `*pointer`. That is  `*pointer` in parentheses dot structure member.
+
+The previous method was confusing, so here comes the arrow pointer :
+
+```c
+printf("Name : %s\n", pointer->name);
+printf("Age : %d\n", pointer->age);
+```
+
+### Pointer to Function
+Like every variable, function also has a unique memory address. Here is the syntax for pointer to function.
+```c
+return_type (*pointer_name) (parameters);
+```
+
+This is an example of using a pointer to a function.
+```c
+void hello(){
+	printf("HELLO!\n");
+}
+int main(){
+	void (*pvoid)(); //Create pointer to function
+	pvoid = hello; //Assign function to pointer
+	(*pvoid)(); //Dereference
+	return 0;
+}
+```
+This is pointer to function looks in memory.
+
+<img src="/images/pointer-to-function.png">
+
+A better name convention by using typedef. Here is the syntax :
+```c
+typedef return_type (*pointer_name) (parameters);
+```
+
+For example :
+```c
+typedef int (*FP)(int,int);
+int add(int a, int b){
+	return a+b;
+}
+int main(){
+	int answer;
+	pfunc = add;
+	answer = (*pfunc)(23,32);
+	printf("23+32=%d\n", answer);
+	return 0;
+}
+```
+
 ## Memory Allocation
 ### Static (Stack)
 The data structure for the stack is LIFO (last-in-first-out). A stack is an abstract data type in computer science that acts as a collection of objects and has two main operations:
@@ -380,3 +450,4 @@ Pointers are complicated. In this article, I only managed to give a small exampl
 10. [https://twitter.com/thingskatedid/status/1535708903345750016](https://twitter.com/thingskatedid/status/1535708903345750016)
 11. [https://raphlinus.github.io/programming/rust/2018/08/17/undefined-behavior.html](https://raphlinus.github.io/programming/rust/2018/08/17/undefined-behavior.html)
 12. [https://stackoverflow.com/questions/17649629/understanding-fgetc-program](https://stackoverflow.com/questions/17649629/understanding-fgetc-program)
+13. [https://www.w3schools.com/c/c_structs.php](https://www.w3schools.com/c/c_structs.php)
