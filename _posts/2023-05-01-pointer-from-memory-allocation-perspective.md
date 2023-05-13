@@ -33,7 +33,7 @@ The "`*`" operator can be used to obtain the value of a variable that a pointer 
 printf("%d", *Pointer); // This give the output of an integer value that is stored in the variable Value.
 ```
 
-Generally, reading `*` as ‘`the thing pointed to by`’ is a good way to view `*` in C.
+Generally, reading `*` as `the thing pointed to by` is a good way to view `*` in C.
 ```c
 int numb; // numb is an int
 int func(); // func() is an int
@@ -50,7 +50,7 @@ If we send the argument via reference, all changes performed in the called metho
 
 <img src="/images/Pasted image 20230512113408.png">
 
-We have two functions : funct1 and funct2. And we have a cup in funct1. In call by value, we only pass a copy of this cup to funct2. So any change made to this copy in funct2 will not reflect in cup in funct1. But in call by reference we are passing a reference and giving access to the original cup. So any change made to the cup will be reflected in funct1.
+We have two functions : `funct1` and `funct2`. And we have a cup in `funct1`. In call by value, we only pass a copy of this cup to `funct2`. So any change made to this copy in `funct2` will not reflect in cup in `funct1`. But in call by reference we are passing a reference and giving access to the original cup. So any change made to the cup will be reflected in `funct1`.
 
 It's vital to understand that "pass by reference" in C++ is not the same as "pass by sharing" or "pass by value" in many other languages. A copy of the value is created and provided to the function in "pass by sharing," but "pass by reference" allows direct access to the original variable. A lot of beginners were confused by this. We use C in this blog, thus pointers, like everything else in C, are passed by value.
 
@@ -63,7 +63,7 @@ pointer++; // 10004
 pointer--; // 10000
 ```
 
-Assume the value's address is 10000. Then, after incrementing, it points to address 10004 since the data type integer has a 4 bit size. If we decrease, it returns to address 10000.
+Assume the `value`'s address is 10000. Then, after incrementing, it points to address 10004 since the data type integer has a 4 bit size. If we decrease, it returns to address 10000.
 
 <img src="/images/Pasted image 20230512100325.png">
 
@@ -104,7 +104,7 @@ printf("pointer+1 = %p\n", (int*)pointer+1);
 ```
 
 #### Application in malloc() and calloc()
-Instead of having a variety of data types for malloc and calloc, we may write a single generic malloc method that returns void*. It must be typecast to the required type. However, typecasting is done directly by the compiler in C. This is how we can utilize a pointer to build a generic function or program that can handle any data type. 
+Instead of having a variety of data types for `malloc` and `calloc`, we may write a single generic malloc method that returns `void*`. It must be typecast to the required type. However, typecasting is done directly by the compiler in C. This is how we can utilize a pointer to build a generic function or program that can handle any data type. 
 
 ```c
 int *ptrInt = malloc(sizeof(int));
