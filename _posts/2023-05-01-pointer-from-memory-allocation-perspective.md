@@ -241,7 +241,7 @@ This is how print a linked list looks in memory :
 
 <img src="/images/print-linked-list.png">
 
-1. First create a temporary node `temp` and assign the head node's address. We have a while loop while `temp` is not equal to `NULL` so this loop will continue. Print the data which is present in `temp` node which is the head node now so it prints 1 and move `temp` to the next node.
+1. First create a temporary node `temp` and assign the head node's address. While `temp` is not equal to `NULL` so this loop will print the data which is present in `temp` node which is the head node. So, it prints 1 and move `temp` to the next node.
 2. Now `temp` points to 2024 then print the data at address 2024 which is 2. Then move `temp` to the next node.
 3. Now `temp` equal to 3024 again check the condition. It is still true. Print the data at address 3024 which is 3. Move `temp` to the next node. 
 4. Variable `temp` equal to `NULL` and it fails.
@@ -267,6 +267,14 @@ Files are stored in the ROM of the read only memory. We can efficiently access t
 FILE *file_pointer;
 ```
 
+Here are some examples of how pointers are commonly used in file operations:
+1. Pointers are used in file handling to generate and modify file objects. A file object pointer enables activities like opening, shutting, reading, and writing to the file.
+2. Pointers are used to store and retrieve the current location of a file. This permits data to be read or written at precise points inside the file.
+3. To manage buffers for efficient reading and writing operations, pointers are utilized. Data can be temporarily held in memory via a reference to a buffer before being written to or retrieved from a file.
+4. Pointers are used to read and write data from/to files. Data may be read from or written to specified memory regions using pointers, giving you more control and flexibility when dealing with file data.
+5. File pointers are used to keep track of where you are in a file during sequential access. They are automatically incremented or decremented when data is read or written, allowing for quick file content traversal.
+6. Pointers are used to manage and notify problems that arise during file operations. Error codes or error messages can be saved in a pointer variable to reflect the status of the file operation.
+
 ### Open File
 ```c
 // Open a file
@@ -278,13 +286,54 @@ So, when we open a file with the fopen function, we attach a buffer to it and it
 
 <img src="/images/Pasted image 20230512131903.png">
 
-Here are some examples of how pointers are commonly used in file operations:
-1. Pointers are used in file handling to generate and modify file objects. A file object pointer enables activities like opening, shutting, reading, and writing to the file.
-2. Pointers are used to store and retrieve the current location of a file. This permits data to be read or written at precise points inside the file.
-3. To manage buffers for efficient reading and writing operations, pointers are utilized. Data can be temporarily held in memory via a reference to a buffer before being written to or retrieved from a file.
-4. Pointers are used to read and write data from/to files. Data may be read from or written to specified memory regions using pointers, giving you more control and flexibility when dealing with file data.
-5. File pointers are used to keep track of where you are in a file during sequential access. They are automatically incremented or decremented when data is read or written, allowing for quick file content traversal.
-6. Pointers are used to manage and notify problems that arise during file operations. Error codes or error messages can be saved in a pointer variable to reflect the status of the file operation.
+### Read File
+In this example, we use fgetc() for reading char by char. The other function you can use is fgets() for reading string by string. But be careful when reading data from a file because it may cause a vulnerability.
+```c
+fgetc(FILE *pointer);
+fgets(char *strings, int size, FILE *file_pointer);
+```
+
+This is an example of how to implement reading data from a file.
+```c
+FILE *file_pointer = fopen("file_name.txt", "r"); //Mode read only
+if(file_pointer != NULL){ //Make sure there is file_name.txt on disk
+	char charc = fgetc(file_pointer); //Read current symbol from file_name.txt
+	while(charc != EOF){ //Check EOF read/returned by last fgetc() call
+		printf("%c", charc); //Output lasts read symbol
+		charc = fgets(file_pointer); //Read next symbols from filename.txt
+	}
+}
+fclose(file_pointer); //Remember to close the file after finish
+```
+
+This is how read from file_name.txt looks in memory.
+
+<img src="/images/file-operation-read.png">
+
+Function fgetc(file_pointer) will return a single character from the buffer and automatically move the position of the pointer to the next character until EOF. EOF stands for end-of-file, a marker used to indicate the end of a file of data. If we close the file fclose(file_pointer), the buffer associated with the file is removed from the memory.
+
+### Write File
+In this example, we use fputc() for writing char by char. The other function you can use is fputs() for writing string by string.
+```c
+fputc(char, *file_pointer);
+fputs()
+```
+
+This is an example of how to implement writing data to a file.
+```c
+FILE *file_pointer = fopen("file_name.txt", "w"); //Mode write only
+if(file_pointer != NULL){ //Check availability file_name.txt on disk
+	fputc('H', file_pointer); //Write 'H' into buffer then move pointer to the next buffer
+	fputc('E', file_pointer); //Write 'E' into buffer then move pointer to the next buffer
+	fputc('L', file_pointer); //Write 'L' into buffer then move pointer to the next buffer
+	fputc('L', file_pointer); //Write 'L' into buffer then move pointer to the next buffer
+	fputc('O', file_pointer); //Write 'O' into buffer then move pointer to the next buffer
+	fclose(file_pointer); //Automatically assign EOF
+}
+fclose(file_pointer); //Remember to close the file after finish
+```
+
+If the specified file exists, we can write the data to it. But if the specified file name does not exist, it will create a new file. The data will not be written directly to the file, but it will be written into the attached buffer. When we close the file, the whole content will be returned to the file.
 
 # Key Takeaways
 - The stack is used to store the pointer variable, while the pointer is used to manipulate the heap memory itself. 
@@ -312,3 +361,4 @@ Pointers are complicated. In this article, I only managed to give a small exampl
 9. [https://stackoverflow.com/questions/5672746/what-exactly-is-the-file-keyword-in-c](https://stackoverflow.com/questions/5672746/what-exactly-is-the-file-keyword-in-c)
 10. [https://twitter.com/thingskatedid/status/1535708903345750016](https://twitter.com/thingskatedid/status/1535708903345750016)
 11. [https://raphlinus.github.io/programming/rust/2018/08/17/undefined-behavior.html](https://raphlinus.github.io/programming/rust/2018/08/17/undefined-behavior.html)
+12. [https://stackoverflow.com/questions/17649629/understanding-fgetc-program](https://stackoverflow.com/questions/17649629/understanding-fgetc-program)
