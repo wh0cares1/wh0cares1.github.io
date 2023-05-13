@@ -252,6 +252,8 @@ This is how print a linked list looks in memory :
 
 Each node will include the data component as well as two pointers to the left and right. Also, a tree is a non-linear data structure of type hierarchical data structure, and these nodes are related, and the links between these nodes are referred to as tree branches.
 
+
+
 ## Embedded System
 Because of their ability to effectively change memory locations and access hardware registers, pointers are widely utilized in embedded system programming such as:
 1. Pointers can be used to allocate and deallocate dynamic memory, manage memory pools, and build data structures such as linked lists, stacks, and queues.
@@ -316,7 +318,7 @@ Function fgetc(file_pointer) will return a single character from the buffer and 
 In this example, we use fputc() for writing char by char. The other function you can use is fputs() for writing string by string.
 ```c
 fputc(char, *file_pointer);
-fputs()
+fputs(char*, *file_pointer);
 ```
 
 This is an example of how to implement writing data to a file.
