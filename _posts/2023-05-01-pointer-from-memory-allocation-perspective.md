@@ -150,7 +150,7 @@ pointer = malloc(5 * sizeof(int)); //Allocate heap memory with size 5 * 4 bytes
 free(pointer); //If the heap are not freed, they cause memory leaks.
 ```
 
-When you allocate memory on the heap with methods like malloc or calloc in C programming, the returned reference to the allocated memory is normally saved in a variable on the stack. Although memory is allocated on the heap, the pointer variable that carries the address of the allocated memory is saved on the stack. This lets you to indirectly access and control heap memory via the pointer variable. See the illustration below.
+When you allocate memory on the heap with methods like malloc or calloc in C programming, although memory is allocated on the heap, the pointer variable that carries the address of the allocated memory is saved on the stack. This lets you to indirectly access and control heap memory via the pointer variable. See the illustration below.
 
 <img src="/images/Pasted image 20230511140620.png">
 
@@ -187,7 +187,7 @@ printf("%zu\n", sizeof(pointer));      //8 (assuming 64-bit system)
 
 When an array is used in an expression, it is automatically converted (or "decays") to a pointer to its first element. This pointer represents the memory address where the array starts. This behavior can lead to some confusion and the misconception that "arrays are pointers". So, `sizeof` used within the function would give you the size of the pointer, not the original array.
 
-The square brackets [] are not strictly "array operators" in C and C++, although they are used for array subscripting. `*(a + b)`, where an is a pointer and b is an index, is equivalent to `a[b]`. This similarity is due to pointer arithmetic characteristics, which state that adding an integer value to a pointer moves it by that many elements. Because addition is commutative, both `a[b]` and `b[a]` are valid and have the same meaning. This gives rise to the amusing example of `0["x"]` which is identical to `*(0 + "x")` or `"x"[0]`.
+The square brackets [] are not strictly "array operators" in C and C++, although they are used for array subscripting. `*(a + b)`, where a is a pointer and b is an index, is equivalent to `a[b]`. This similarity is due to pointer arithmetic characteristics, which state that adding an integer value to a pointer moves it by that many elements. Because addition is commutative, both `a[b]` and `b[a]` are valid and have the same meaning. This gives rise to the amusing example of `0["x"]` which is identical to `*(0 + "x")` or `"x"[0]`.
 
 Pointer arithmetic is well-defined in C and C++ for both pointer + integer and integer + pointer expressions. As long as the types are suitable, the result is the same regardless of the order of the operands.
 ```c
