@@ -193,8 +193,8 @@ Pointer arithmetic is well-defined in C and C++ for both pointer + integer and i
 ```c
 int numb = 10;
 int *pointer = &numb;
-int *add1 = pointer + 3;   // Advances the pointer by 3 * sizeof(int) bytes
-int *add2 = 3 + pointer;   // Same as above, order of operands doesn't matter
+int *offset1 = pointer + 3;   // Advances the pointer by 3 * sizeof(int) bytes
+int *offset2 = 3 + pointer;   // Same as above, order of operands doesn't matter
 ```
 The type of operands important in pointer arithmetic because it defines the scaling factor used during the arithmetic operation. It guarantees that the pointer is accurately changed by the required amount of bytes dependent on the size of the underlying type.
 
@@ -229,7 +229,7 @@ This is how it looks in memory :
 This is how to print a linked list.
 
 ```c
-struct node *temp = head;
+struct node *temp = head; //create temporary variable pointer
 
 while(temp != NULL){
 	printf("%d\n", temp->data);
@@ -237,13 +237,14 @@ while(temp != NULL){
 }
 ```
 
-Start from the head and print the data and repeat till we have node's next equal to null.
-1. First create a temporary node temp and assign the head node's address. Now we have a while loop while temp is not equal to null so this loop will continue till temp becomes null. Print the data which is present in temp node which is the head node now so it prints 1 and move temp to the next node.
-2. Now temp points to 2024 then print the data at address 2024 which is 2. Then move temp to the next node.
-3. Now temp equal to 3024 again check the condition. It is still true. Print the data at address 3024 which is 3. Move temp to the next node. 
-4. Variable temp equal to null since temp next equal to null and it fails.
+This is how it looks in memory :
 
-<img src="/images/Pasted image 20230512121405.png">
+<img src="/images/print-linked-list.png">
+
+1. First create a temporary node `temp` and assign the head node's address. We have a while loop while `temp` is not equal to `NULL` so this loop will continue. Print the data which is present in `temp` node which is the head node now so it prints 1 and move `temp` to the next node.
+2. Now `temp` points to 2024 then print the data at address 2024 which is 2. Then move `temp` to the next node.
+3. Now `temp` equal to 3024 again check the condition. It is still true. Print the data at address 3024 which is 3. Move `temp` to the next node. 
+4. Variable `temp` equal to `NULL` and it fails.
 
 ### Binary Tree
 
