@@ -254,13 +254,6 @@ Each node will include the data component as well as two pointers to the left an
 
 
 
-## Embedded System
-Because of their ability to effectively change memory locations and access hardware registers, pointers are widely utilized in embedded system programming such as:
-1. Pointers can be used to allocate and deallocate dynamic memory, manage memory pools, and build data structures such as linked lists, stacks, and queues.
-2. Pointers are used to directly access and control peripheral devices and hardware registers by mapping them to specified memory addresses. This enables effective interaction with hardware components.
-3. DMA (Direct Memory Access) operations use pointers to allow direct data transfers between peripherals and memory without the need for CPU intervention.
-4. Pointers are used to store and alter interrupt service routine (ISR) addresses, allowing for efficient hardware interrupt management and event-driven programming.
-5. Pointers make data manipulation more efficient, especially when big data sets or complicated data structures must be handled or altered.
 
 ## File Operations
 Files are stored in the ROM of the read only memory. We can efficiently access the files using file pointers. The syntax to create a file pointer is
@@ -317,8 +310,8 @@ Function fgetc(file_pointer) will return a single character from the buffer and 
 ### Write File
 In this example, we use fputc() for writing char by char. The other function you can use is fputs() for writing string by string.
 ```c
-fputc(char, *file_pointer);
-fputs(char*, *file_pointer);
+fputc(char charc, FILE *file_pointer);
+fputs(char *strings, FILE *file_pointer);
 ```
 
 This is an example of how to implement writing data to a file.
@@ -336,6 +329,14 @@ fclose(file_pointer); //Remember to close the file after finish
 ```
 
 If the specified file exists, we can write the data to it. But if the specified file name does not exist, it will create a new file. The data will not be written directly to the file, but it will be written into the attached buffer. When we close the file, the whole content will be returned to the file.
+
+## Embedded System
+Because of their ability to effectively change memory locations and access hardware registers, pointers are widely utilized in embedded system programming such as:
+1. Pointers can be used to allocate and deallocate dynamic memory, manage memory pools, and build data structures such as linked lists, stacks, and queues.
+2. Pointers are used to directly access and control peripheral devices and hardware registers by mapping them to specified memory addresses. This enables effective interaction with hardware components.
+3. DMA (Direct Memory Access) operations use pointers to allow direct data transfers between peripherals and memory without the need for CPU intervention.
+4. Pointers are used to store and alter interrupt service routine (ISR) addresses, allowing for efficient hardware interrupt management and event-driven programming.
+5. Pointers make data manipulation more efficient, especially when big data sets or complicated data structures must be handled or altered.
 
 # Key Takeaways
 - The stack is used to store the pointer variable, while the pointer is used to manipulate the heap memory itself. 
