@@ -20,7 +20,7 @@ title                    : "Who Cares"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "wh0cares1"
-description              : "A journey to the rabbit holes."
+description              : "Journey to the rabbit holes."
 url                      : "https://wh0cares1.github.io/"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -106,7 +106,7 @@ analytics:
 author:
   name             : "wh0cares1"
   avatar           : "https://pbs.twimg.com/profile_images/1633441398031810561/T_m-umeC_400x400.jpg"
-  bio              : "Security Research"
+  bio              : "Journey to the rabbit holes."
   location         : "Sea of Nodes or Kernel Pool"
   email            :
   links:

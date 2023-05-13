@@ -181,8 +181,8 @@ For arrays and pointers, the `sizeof` operator acts differently. `sizeof(array)`
 ```c
 int numb[5];
 int *pointer = numb;
-printf("%zu\n", sizeof(numb)); //20 (assuming sizeof(int) = 4 bit)
-printf("%zu\n", sizeof(pointer)); //8 (assuming 64-bit system)
+printf("%zu\n", sizeof(numb)); // 20 (assuming sizeof(int) = 4 bit)
+printf("%zu\n", sizeof(pointer)); // 8 (assuming 64-bit system)
 ```
 
 When an array is used in an expression, it is automatically converted (or "decays") to a pointer to its first element. This pointer represents the memory address where the array starts. This behavior can lead to some confusion and the misconception that "arrays are pointers". So, `sizeof` used within the function would give you the size of the pointer, not the original array.
@@ -208,15 +208,15 @@ struct node{
 	struct node *next;
 }
 struct node *head, *body, *tail;
-//Create a list on the heap.
+// Create a list on the heap
 head = malloc(sizeof(struct node));
 body = malloc(sizeof(struct node));
 tail = malloc(sizeof(struct node));
-//Give the list a value.
+// Give the list a value
 head->data = 1;
 body->data = 2;
 tail->data = 3;
-//Create linked list.
+// Create a linked list
 head->next = body;
 body->next = tail;
 tail->next = NULL;
@@ -229,7 +229,7 @@ This is how linked list looks in memory :
 This is how to print a linked list.
 
 ```c
-struct node *temp = head; //create temporary variable pointer
+struct node *temp = head; // Create temporary variable pointer
 
 while(temp != NULL){
 	printf("%d\n", temp->data);
@@ -269,7 +269,7 @@ FILE *file_pointer;
 
 ### Open File
 ```c
-//Open a file
+// Open a file
 FILE *file_pointer = fopen("file_name.txt", "r");
 ```
 It is important to note that the fopen function will not directly point the file's address. Because to read or write data directly to the secondary memory takes a lot of resources and time. For example if you want to read a single character from file_name.txt it will go through C library and then it will call the operating system. And then the operating system will initiate the driver to read the data.
@@ -298,6 +298,7 @@ Pointers are complicated. In this article, I only managed to give a small exampl
 - [Pointers Are Complicated II, or: We need better language specs](https://www.ralfj.de/blog/2020/12/14/provenance.html)
 - [Pointers Are Complicated III, or: Pointer-integer casts exposed](https://www.ralfj.de/blog/2022/04/11/provenance-exposed.html)
 - [Reconciling High-level Optimizations and Low-level Code in LLVM](https://sf.snu.ac.kr/llvmtwin/files/presentation.pdf)
+- [What’s the difference between an integer and a pointer?](https://blog.regehr.org/archives/1621)
 
 # Sources
 1. [https://www.youtube.com/watch?list=PLhb7SOmGNUc4EBVjd7x5TiEyOKXt71whE](https://www.youtube.com/watch?v=_x1MmVhLOt4&list=PLhb7SOmGNUc4EBVjd7x5TiEyOKXt71whE&index=1&ab_channel=Log2Base2%C2%AE)
