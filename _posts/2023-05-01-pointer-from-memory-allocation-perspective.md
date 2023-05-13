@@ -299,7 +299,7 @@ Pointers are complicated. In this article, I only managed to give a small exampl
 - [Pointers Are Complicated III, or: Pointer-integer casts exposed](https://www.ralfj.de/blog/2022/04/11/provenance-exposed.html)
 - [Reconciling High-level Optimizations and Low-level Code in LLVM](https://sf.snu.ac.kr/llvmtwin/files/presentation.pdf)
 
-# Resource
+# Sources
 1. [https://www.youtube.com/watch?list=PLhb7SOmGNUc4EBVjd7x5TiEyOKXt71whE](https://www.youtube.com/watch?v=_x1MmVhLOt4&list=PLhb7SOmGNUc4EBVjd7x5TiEyOKXt71whE&index=1&ab_channel=Log2Base2%C2%AE)
 2. [https://www.w3schools.com/c/c_pointers.php](https://www.w3schools.com/c/c_pointers.php#:~:text=A%20pointer%20is%20a%20variable,another%20variable%20as%20its%20value)
 3. [https://www.youtube.com/watch?v=h-HBipu_1P0](https://www.youtube.com/watch?v=h-HBipu_1P0&ab_channel=mycodeschool)
