@@ -185,8 +185,8 @@ int add(int a, int b){
 }
 int main(){
 	int answer;
-	pfunc = add;
-	answer = (*pfunc)(23,32);
+	pfunc = add; //Assign the address of function add to pointer pfunc
+	answer = (*pfunc)(23,32); //Assign the answer to variable answer
 	printf("23+32=%d\n", answer);
 	return 0;
 }
