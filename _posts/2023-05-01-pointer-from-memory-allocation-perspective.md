@@ -19,21 +19,21 @@ Pointer refers to memory addresses, using that reference we access the value sto
 
 Use the "`*`" symbol before the variable name in C to declare a pointer. To define a pointer to an integer variable, for example :
 ```c
-int *Pointer; //variable Pointer stores the address of some variable with type of an integer
+int *Pointer; // variable Pointer stores the address of some variable with type of an integer
 ```
 
 To initialize a pointer, use the "&" operator to assign it the address of a variable. For example, to refer a pointer to an integer variable called "Value", you might type :
 ```c
 int Value = 12; 
-int *Pointer = &Value; //variable Pointer stores the address of variable Value
+int *Pointer = &Value; // variable Pointer stores the address of variable Value
 ```
 
 The "`*`" operator can be used to obtain the value of a variable that a pointer points to. To print the value of the integer variable that "Pointer" points to, for example :
 ```c
-printf("%d", *Pointer); //This will give the output of an integer value that is stored in the variable Value.
+printf("%d", *Pointer); // This give the output of an integer value that is stored in the variable Value.
 ```
 
-Generally, reading `*` as ‘the thing pointed to by’ is a good way to view `*` in C.
+Generally, reading `*` as ‘`the thing pointed to by`’ is a good way to view `*` in C.
 ```c
 int numb; // numb is an int
 int func(); // func() is an int
@@ -52,15 +52,15 @@ If we send the argument via reference, all changes performed in the called metho
 
 We have two functions : funct1 and funct2. And we have a cup in funct1. In call by value, we only pass a copy of this cup to funct2. So any change made to this copy in funct2 will not reflect in cup in funct1. But in call by reference we are passing a reference and giving access to the original cup. So any change made to the cup will be reflected in funct1.
 
-It's vital to understand that "pass by reference" in C++ is not the same as "pass by sharing" or "pass by value" in many other languages. A copy of the value is created and provided to the function in "pass by sharing," but "pass by reference" allows direct access to the original variable. A lot of beginners were confused by this. We use C language in this blog, thus pointers, like everything else in C, are passed by value.
+It's vital to understand that "pass by reference" in C++ is not the same as "pass by sharing" or "pass by value" in many other languages. A copy of the value is created and provided to the function in "pass by sharing," but "pass by reference" allows direct access to the original variable. A lot of beginners were confused by this. We use C in this blog, thus pointers, like everything else in C, are passed by value.
 
 ### Pointer Arithmetic
 It is dependent on the data type. For example :
 ```c
 int value = 100;
-int *pointer = &value; //10000
-pointer++; //10004
-pointer--; //10000
+int *pointer = &value; // 10000
+pointer++; // 10004
+pointer--; // 10000
 ```
 
 Assume the value's address is 10000. Then, after incrementing, it points to address 10004 since the data type integer has a 4 bit size. If we decrease, it returns to address 10000.
@@ -77,9 +77,9 @@ int numb = 100;
 char charc = 'a';
 void *pointer;
 pointer = &numb;
-printf("Value of numb is %d\n", *pointer); //Error
+printf("Value of numb is %d\n", *pointer); // Error
 pointer = &charc;
-printf("Value of charc is %c\n", *pointer); //Error
+printf("Value of charc is %c\n", *pointer); // Error
 ```
 
 The main problem is that the compiler doesn't know how many bytes to read when referencing it. The void pointer must be typecast into the appropriate datatype.
@@ -89,9 +89,9 @@ int numb = 100;
 char charc = 'a';
 void *pointer;
 pointer = &numb;
-printf("Value of numb is %d\n", *(int*)pointer); //appropriate datatype
+printf("Value of numb is %d\n", *(int*)pointer); // Appropriate datatype
 pointer = &charc;
-printf("Value of charc is %c\n", *(char*)pointer); //appropriate datatype
+printf("Value of charc is %c\n", *(char*)pointer); // Appropriate datatype
 ```
 
 We can't execute void pointer arithmetic in standard C, such as Microsoft Visual C, since the size of the void is unknown and would produce an error. Because the size of the void is one, we may do void pointer arithmetic on GCC. However, void pointer arithmetic may be performed on standard C by typecasting it into the needed data type.
@@ -139,15 +139,15 @@ The heap provides runtime memory allocation and deallocation using operations li
 
 ### Corelation of the Stack and Heap
 ```c
-int *pointer; //pointer to integer
-pointer = malloc(5 * sizeof(int)); //Allocate heap memory with size 5 * 4 bytes
-//Assume the address stored in variable pointer is 10000
-*(pointer+0) = 1; //*(10000) = 1
-*(pointer+1) = 2; //*(10004) = 2
-*(pointer+2) = 3; //*(10008) = 3
-*(pointer+3) = 4; //*(10012) = 4
-*(pointer+4) = 5; //*(10016) = 5
-free(pointer); //If the heap are not freed, they cause memory leaks.
+int *pointer; // pointer to integer
+pointer = malloc(5 * sizeof(int)); // Allocate heap memory with size 5 * 4 bytes
+// Assuming the address stored in variable pointer is 10000
+*(pointer+0) = 1; // *(10000) = 1
+*(pointer+1) = 2; // *(10004) = 2
+*(pointer+2) = 3; // *(10008) = 3
+*(pointer+3) = 4; // *(10012) = 4
+*(pointer+4) = 5; // *(10016) = 5
+free(pointer); // If the heap are not freed, they cause memory leaks.
 ```
 
 When you allocate memory on the heap with methods like malloc or calloc in C programming, although memory is allocated on the heap, the pointer variable that carries the address of the allocated memory is saved on the stack. This lets you to indirectly access and control heap memory via the pointer variable. See the illustration below.
@@ -181,20 +181,20 @@ For arrays and pointers, the `sizeof` operator acts differently. `sizeof(array)`
 ```c
 int numb[5];
 int *pointer = numb;
-printf("%zu\n", sizeof(numb));    //20 (assuming sizeof(int) = 4 bit)
-printf("%zu\n", sizeof(pointer));      //8 (assuming 64-bit system)
+printf("%zu\n", sizeof(numb)); //20 (assuming sizeof(int) = 4 bit)
+printf("%zu\n", sizeof(pointer)); //8 (assuming 64-bit system)
 ```
 
 When an array is used in an expression, it is automatically converted (or "decays") to a pointer to its first element. This pointer represents the memory address where the array starts. This behavior can lead to some confusion and the misconception that "arrays are pointers". So, `sizeof` used within the function would give you the size of the pointer, not the original array.
 
 The square brackets [] are not strictly "array operators" in C and C++, although they are used for array subscripting. `*(a + b)`, where a is a pointer and b is an index, is equivalent to `a[b]`. This similarity is due to pointer arithmetic characteristics, which state that adding an integer value to a pointer moves it by that many elements. Because addition is commutative, both `a[b]` and `b[a]` are valid and have the same meaning. This gives rise to the amusing example of `0["x"]` which is identical to `*(0 + "x")` or `"x"[0]`.
 
-Pointer arithmetic is well-defined in C and C++ for both pointer + integer and integer + pointer expressions. As long as the types are suitable, the result is the same regardless of the order of the operands.
+Pointer arithmetic is well-defined in C and C++ for both `pointer + integer` and `integer + pointer` expressions. As long as the types are suitable, the result is the same regardless of the order of the operands.
 ```c
 int numb = 10;
 int *pointer = &numb;
-int *offset1 = pointer + 3;   // Advances the pointer by 3 * sizeof(int) bytes
-int *offset2 = 3 + pointer;   // Same as above, order of operands doesn't matter
+int *offset1 = pointer + 3; // Advances the pointer by 3 * sizeof(int) bytes
+int *offset2 = 3 + pointer; // Same as above, order of operands doesn't matter
 ```
 The type of operands important in pointer arithmetic because it defines the scaling factor used during the arithmetic operation. It guarantees that the pointer is accurately changed by the required amount of bytes dependent on the size of the underlying type.
 
@@ -222,7 +222,7 @@ body->next = tail;
 tail->next = NULL;
 ```
 
-This is how it looks in memory :
+This is how linked list looks in memory :
 
 <img src="/images/Pasted image 20230512120538.png">
 
@@ -237,7 +237,7 @@ while(temp != NULL){
 }
 ```
 
-This is how it looks in memory :
+This is how print a linked list looks in memory :
 
 <img src="/images/print-linked-list.png">
 
@@ -293,19 +293,21 @@ Here are some examples of how pointers are commonly used in file operations:
 - Pointers, like everything else in C, are passed by value.
 
 # What's next?
-Pointers actually really complicated. In this article, I only managed to give a small example of a pointer, so beginners wouldn't get confused. If you want to understand pointers better, here are some good articles you may find interesting to read.
+Pointers are complicated. In this article, I only managed to give a small example of a pointer, so beginners wouldn't get confused. If you want to understand pointers better, here are some good articles you may find interesting to read.
 - [Pointers Are Complicated, or: What's in a Byte?](https://www.ralfj.de/blog/2018/07/24/pointers-and-bytes.html)
 - [Pointers Are Complicated II, or: We need better language specs](https://www.ralfj.de/blog/2020/12/14/provenance.html)
 - [Pointers Are Complicated III, or: Pointer-integer casts exposed](https://www.ralfj.de/blog/2022/04/11/provenance-exposed.html)
+- [Reconciling High-level Optimizations and Low-level Code in LLVM](https://sf.snu.ac.kr/llvmtwin/files/presentation.pdf)
 
 # Resource
-1. [https://www.youtube.com/watch?v=_x1MmVhLOt4&list=PLhb7SOmGNUc4EBVjd7x5TiEyOKXt71whE&index=1&ab_channel=Log2Base2%C2%AE](https://www.youtube.com/watch?v=_x1MmVhLOt4&list=PLhb7SOmGNUc4EBVjd7x5TiEyOKXt71whE&index=1&ab_channel=Log2Base2%C2%AE)
-2. [https://www.w3schools.com/c/c_pointers.php#:~:text=A%20pointer%20is%20a%20variable,another%20variable%20as%20its%20value](https://www.w3schools.com/c/c_pointers.php#:~:text=A%20pointer%20is%20a%20variable,another%20variable%20as%20its%20value)
-3. [https://www.youtube.com/watch?v=h-HBipu_1P0&ab_channel=mycodeschool](https://www.youtube.com/watch?v=h-HBipu_1P0&ab_channel=mycodeschool)
+1. [https://www.youtube.com/watch?list=PLhb7SOmGNUc4EBVjd7x5TiEyOKXt71whE](https://www.youtube.com/watch?v=_x1MmVhLOt4&list=PLhb7SOmGNUc4EBVjd7x5TiEyOKXt71whE&index=1&ab_channel=Log2Base2%C2%AE)
+2. [https://www.w3schools.com/c/c_pointers.php](https://www.w3schools.com/c/c_pointers.php#:~:text=A%20pointer%20is%20a%20variable,another%20variable%20as%20its%20value)
+3. [https://www.youtube.com/watch?v=h-HBipu_1P0](https://www.youtube.com/watch?v=h-HBipu_1P0&ab_channel=mycodeschool)
 4. [https://courses.engr.illinois.edu/cs225/fa2022/resources/stack-heap/](https://courses.engr.illinois.edu/cs225/fa2022/resources/stack-heap/)
-5. [https://www.youtube.com/watch?v=X1DcpcgSUXw&ab_channel=mycodeschool](https://www.youtube.com/watch?v=X1DcpcgSUXw&ab_channel=mycodeschool)
+5. [https://www.youtube.com/watch?v=X1DcpcgSUXw](https://www.youtube.com/watch?v=X1DcpcgSUXw&ab_channel=mycodeschool)
 6. [https://medium.com/@shoheiyokoyama/understanding-memory-layout-4ef452c2e709](https://medium.com/@shoheiyokoyama/understanding-memory-layout-4ef452c2e709)
 7. [https://medium.com/fhinkel/confused-about-stack-and-heap-2cf3e6adb771](https://medium.com/fhinkel/confused-about-stack-and-heap-2cf3e6adb771)
 8. [https://www.geeksforgeeks.org/void-pointer-c-cpp/](https://www.geeksforgeeks.org/void-pointer-c-cpp/)
 9. [https://stackoverflow.com/questions/5672746/what-exactly-is-the-file-keyword-in-c](https://stackoverflow.com/questions/5672746/what-exactly-is-the-file-keyword-in-c)
 10. [https://twitter.com/thingskatedid/status/1535708903345750016](https://twitter.com/thingskatedid/status/1535708903345750016)
+11. [https://raphlinus.github.io/programming/rust/2018/08/17/undefined-behavior.html](https://raphlinus.github.io/programming/rust/2018/08/17/undefined-behavior.html)
