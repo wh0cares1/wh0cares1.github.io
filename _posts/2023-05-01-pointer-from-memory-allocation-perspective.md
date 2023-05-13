@@ -252,8 +252,23 @@ This is how print a linked list looks in memory :
 
 Each node will include the data component as well as two pointers to the left and right. Also, a tree is a non-linear data structure of type hierarchical data structure, and these nodes are related, and the links between these nodes are referred to as tree branches.
 
+Below is a guide on how you can create a node.
 
+```c
+struct node{
+	int data;
+	struct node *left;
+	struct node *right;
+};
+struct node *root;
+root = malloc(sizeof(struct node));
+root->left = NULL;
+root->key = 10;
+root->right = NULL;
+```
+This is how a node looks in memory.
 
+<img src="/images/create-new-node.png">
 
 ## File Operations
 Files are stored in the ROM of the read only memory. We can efficiently access the files using file pointers. The syntax to create a file pointer is
