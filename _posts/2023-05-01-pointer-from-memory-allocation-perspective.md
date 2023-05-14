@@ -131,6 +131,8 @@ char *a = "a";
 func(&a); // After the function call, a will be NULL
 ```
 
+Utilizing a pointer to a pointer allows us to directly edit a pointer variable rather than returning a modified value or utilizing a global variable. It allows you to modify the value of a pointer in the calling function.
+
 ### Pointer to Structure
 Structures (also known as structs) are a means to gather together multiple related variables in one location. Each variable in the structure is referred to as a structure member. A structure, unlike an array, may hold a wide range of data types (int, float, char, and so on).
 
