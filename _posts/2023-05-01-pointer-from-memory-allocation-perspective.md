@@ -69,6 +69,15 @@ Assume the `value`'s address is 10000. Then, after incrementing, it points to ad
 
 <img src="/images/Pasted image 20230512100527.png">
 
+Pointer arithmetic is well-defined in C and C++ for both `pointer + integer` and `integer + pointer` expressions. As long as the types are suitable, the result is the same regardless of the order of the operands.
+```c
+int numb = 10;
+int *pointer = &numb;
+int *offset1 = pointer + 3; // Advances the pointer by 3 * sizeof(int) bytes
+int *offset2 = 3 + pointer; // Same as above, order of operands doesn't matter
+```
+The type of operands important in pointer arithmetic because it defines the scaling factor used during the arithmetic operation. It guarantees that the pointer is accurately changed by the required amount of bytes dependent on the size of the underlying type.
+
 ### Void Pointer
 A void pointer is a general-purpose pointer that can be used to store the address of any data type variable. It is not associated with a specific data type and can be used to point to variables of any type. An integer pointer cannot point to a variable of another data type, but a void pointer can point to any variable. 
 
@@ -258,16 +267,6 @@ printf("%zu\n", sizeof(pointer)); // 8 (assuming 64-bit system)
 When an array is used in an expression, it is automatically converted (or "decays") to a pointer to its first element. This pointer represents the memory address where the array starts. This behavior can lead to some confusion and the misconception that "arrays are pointers". So, `sizeof` used within the function would give you the size of the pointer, not the original array.
 
 The square brackets [] are not strictly "array operators" in C and C++, although they are used for array subscripting. `*(a + b)`, where a is a pointer and b is an index, is equivalent to `a[b]`. This similarity is due to pointer arithmetic characteristics, which state that adding an integer value to a pointer moves it by that many elements. Because addition is commutative, both `a[b]` and `b[a]` are valid and have the same meaning. This gives rise to the amusing example of `0["x"]` which is identical to `*(0 + "x")` or `"x"[0]`.
-
-Pointer arithmetic is well-defined in C and C++ for both `pointer + integer` and `integer + pointer` expressions. As long as the types are suitable, the result is the same regardless of the order of the operands.
-```c
-int numb = 10;
-int *pointer = &numb;
-int *offset1 = pointer + 3; // Advances the pointer by 3 * sizeof(int) bytes
-int *offset2 = 3 + pointer; // Same as above, order of operands doesn't matter
-```
-The type of operands important in pointer arithmetic because it defines the scaling factor used during the arithmetic operation. It guarantees that the pointer is accurately changed by the required amount of bytes dependent on the size of the underlying type.
-
 
 ### Linked List
 Linked lists are linear data structures with two sections for each node. The data section and the link to the following node. We can save the relevant information in the data section. It can be any data type, such as int, char, float, or double, and the reference component must be a pointer since it will retain the address of the next node. Below is a guide to building a linked list.
