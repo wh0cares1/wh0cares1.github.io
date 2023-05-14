@@ -452,3 +452,4 @@ Pointers are complicated. In this article, I only managed to give a small exampl
 11. [https://raphlinus.github.io/programming/rust/2018/08/17/undefined-behavior.html](https://raphlinus.github.io/programming/rust/2018/08/17/undefined-behavior.html)
 12. [https://stackoverflow.com/questions/17649629/understanding-fgetc-program](https://stackoverflow.com/questions/17649629/understanding-fgetc-program)
 13. [https://www.w3schools.com/c/c_structs.php](https://www.w3schools.com/c/c_structs.php)
+14. [https://medium.com/@hazemu/tricky-pointer-basics-explained-ba87656c9a9a](https://medium.com/@hazemu/tricky-pointer-basics-explained-ba87656c9a9a)
