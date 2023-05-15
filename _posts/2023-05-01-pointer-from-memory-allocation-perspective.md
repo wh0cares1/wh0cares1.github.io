@@ -246,7 +246,7 @@ int array[5]={1, 2, 3, 4, 5};
 
 Here is an illustration of how arrays are stored in memory. 
 
-<img src="/images/Pasted image 20230512142938.png">
+<img src="/images/array.png">
 
 Variable array will point to the first element in the array, 1. Hence variable array will have the address of `array[0]` so `array` equal to `&array[0]`. Printing array items with a pointer is the same as dereference with a pointer.
 
