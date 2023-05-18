@@ -334,7 +334,7 @@ struct node{
 struct node *root;
 root = malloc(sizeof(struct node));
 root->left = NULL;
-root->data = 10;
+root->data = 100;
 root->right = NULL;
 ```
 This is how a node looks in memory.
