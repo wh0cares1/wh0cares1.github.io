@@ -1,4 +1,6 @@
 ---
+layout: single
+title: "Pointer from Memory Allocation Perspective"
 classes: wide
 toc: true
 ---
