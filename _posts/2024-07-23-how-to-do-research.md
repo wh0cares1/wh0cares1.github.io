@@ -27,8 +27,10 @@ toc: true
 ### Logic
 - Big picture
 - Relationship by its importance
+
 ### Concepts
 - Detail from Level Logic
+
 ### Details
 - Useful to comprehend the concepts.
 - Disconnected information but important
@@ -51,6 +53,7 @@ toc: true
 ## Conditioning a Response
 - [Classical Conditioning](https://www.simplypsychology.org/classical-conditioning.html): the process of pairing an instinctive, conditioned reaction with specified stimuli.
 - [Nudge theory](https://whatfix.com/blog/nudge-theory/): change your environment.
+
 ## Flowmodoro
 - Every focus session is not equal; maybe you can focus for 1 hour nonstop or 2 hours nonstop. But make sure to rest for 1/3 of the of the time you can focus.
 - For example: Focus (60 minutes) -> Rest (20 minutes) -> Focus (90 minutes) -> Rest (30 minutes)
@@ -71,6 +74,7 @@ toc: true
 - Use freehand.
 - Non-linear.
 - I use an app on my iPad called Freeform.
+
 ### Use Mind Map
 - Focus on building logic and concepts by actively asking, "**Why is it important?**" and "**How does it relate?**" from the keywords we gathered before.
 - Chunking by importance
@@ -88,6 +92,7 @@ toc: true
 ## Memorization
 ### Memory Palace
 - [This technique](https://artofmemory.com/blog/how-to-build-a-memory-palace/) is to remember the most important details that you **must remember** from your second brain.
+
 ### Flash Cards
 - You can use this to remember equations, function name or other details.
 
