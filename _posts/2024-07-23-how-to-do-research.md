@@ -13,14 +13,16 @@ toc: true
 # Introduction
 - The human brain functions through connections.
 - There are two kinds of memory: working memory and long-term memory.
-- **Good encoding** : working memory -> long-term memory
-- **Constant retrieval** : long-term memory -> working memory
+- **Good encoding**: working memory -> long-term memory
+- **Constant retrieval**: long-term memory -> working memory
 - Encoding information using correlation and connection.
+
 ## Higher Order Thinking
 - [Bloom’s Taxonomy](https://tips.uark.edu/using-blooms-taxonomy/#:~:text=Bloom's%20Taxonomy%20is%20a%20classification%20of%20the%20different%20outcomes%20and,at%20the%20University%20of%20Chicago.) but focusing on 
 	- **Analyzing**: how the parts relate to one another.
 	- **Evaluating**: checking and critiquing.
 	- **Creating**: form a coherent or functional whole.
+
 ## Different Levels of Learning
 ### Logic
 - Big picture
@@ -30,6 +32,7 @@ toc: true
 ### Details
 - Useful to comprehend the concepts.
 - Disconnected information but important
+
 ## Emotional Intelligence
 - Self awareness: ability to perceive and understand the things that make you who you are as an individual.
 - Self reflection: ability to witness and evaluate one's own cognitive, emotional, and behavioural processes.
@@ -81,6 +84,7 @@ toc: true
 - This is **the simplest** example of using Zettelkasten in Obsidian: https://www.youtube.com/watch?v=E6ySG7xYgjY
 - Remember, it's named the second brain for storing details. Your main brain still needs to process the logic and concepts.
 - Use bullet points to describe the main points from the textbox, paper, or slides. But don't forget to include the source and the page number so you don't waste time searching for those if you need the information in the future.
+
 ## Memorization
 ### Memory Palace
 - [This technique](https://artofmemory.com/blog/how-to-build-a-memory-palace/) is to remember the most important details that you **must remember** from your second brain.
