@@ -5,7 +5,7 @@ classes: wide
 toc: true
 ---
 
-> [!NOTE] [Kanjun Qiu](https://kanjun.me/writing/research-as-understanding)
+> [Kanjun Qiu](https://kanjun.me/writing/research-as-understanding)
 > Research is simply a continuation of something we already naturally do: **learning**.
 > Learning happens when you understand something that _someone else already understands_. 
 > Research happens when you understand something that _nobody else understands yet_.
