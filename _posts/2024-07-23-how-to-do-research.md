@@ -81,11 +81,11 @@ toc: true
 - Directional/Flow
 - Relationship by your logic
 - Intuitive and deeply connected
-- This is how you made the mind map : https://www.youtube.com/embed/vzbQ8qZKpeg?si=dj_ay-0nZth-G9xT&amp;start=828
+- This is how you made the mind map : [Ultimate Guide](https://www.youtube.com/embed/vzbQ8qZKpeg?si=dj_ay-0nZth-G9xT&amp;start=828)
 
 ---
 # Second Brain
-- This is **the simplest** example of using Zettelkasten in Obsidian: https://www.youtube.com/watch?v=E6ySG7xYgjY
+- This is **the simplest** example of using Zettelkasten in Obsidian: [Step-by-step guide](https://www.youtube.com/watch?v=E6ySG7xYgjY)
 - Remember, it's named the second brain for storing details. Your main brain still needs to process the logic and concepts.
 - Use bullet points to describe the main points from the textbox, paper, or slides. But don't forget to include the source and the page number so you don't waste time searching for those if you need the information in the future.
 
