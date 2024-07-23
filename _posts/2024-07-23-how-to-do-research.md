@@ -58,7 +58,7 @@ toc: true
 - Every focus session is not equal; maybe you can focus for 1 hour nonstop or 2 hours nonstop. But make sure to rest for 1/3 of the of the time you can focus.
 - For example: Focus (60 minutes) -> Rest (20 minutes) -> Focus (90 minutes) -> Rest (30 minutes)
 - I use five deep breaths to enter focus (the flow zone).
-- When doing rest, you shouldn't use it to scrool on social media mindlessly, but do positive activities like workouts, cooking, or taking a bath.
+- When doing rest, you shouldn't use it to scroll on social media mindlessly, but do positive activities like workouts, cooking, or taking a bath.
 
 ---
 # Chunking Keywords
