@@ -25,15 +25,25 @@ toc: true
 
 ## Different Levels of Learning
 ### Logic
-- Big picture
-- Relationship by its importance
+- The 'backbone' of information (big picture).
+- Relationship by its importance.
 
 ### Concepts
 - Detail from Level Logic
 
 ### Details
+- Usually information that you need to memorize.
 - Useful to comprehend the concepts.
-- Disconnected information but important
+- Disconnected information but important.
+
+## How to Take Note
+- Use visuals: pictures, symbols, and doodles.
+- Make connections: 
+	- [inquiry-based learning](https://www.education.gov.au/australian-curriculum/national-stem-education-resources-toolkit/i-want-know-about-stem-education/what-works-best-when-teaching-stem/inquiry-based-learning#:~:text=Inquiry%2Dbased%20learning%20is%20an,reverses%20the%20order%20of%20learning.): actively asking questions and seeking answers.
+	- [cognitive load theory](https://theeducationhub.org.nz/an-introduction-to-cognitive-load-theory/): the way that new knowledge is constructed in [working memory](https://theeducationhub.org.nz/working-memory-and-its-role-in-teaching-and-learning/), and the way that permanent knowledge is built up and held in long-term memory.
+- Use freehand.
+- Non-linear.
+- I use an app on my iPad called **Freeform**.
 
 ## Emotional Intelligence
 - Self awareness: ability to perceive and understand the things that make you who you are as an individual.
@@ -41,18 +51,18 @@ toc: true
 
 ---
 # Set Goals
-- Goals must be realistic, you can set them by day, week, month and year.
+- Goals must be **realistic**, you can set them by day, week, month and year.
 - For example:
 	- Day: I want to understand Chrome Sandbox from a specific blog, slide, or paper.
-	- Week: I can set up my lab where I can do my own research.
+	- Week: I can set up lab so I can do my own research.
 	- Month: I can recreate old bugs.
 	- Year: I can find my own bug in a specific component.
 
 ---
 # Overcome Procrastination
 ## Conditioning a Response
-- [Classical Conditioning](https://www.simplypsychology.org/classical-conditioning.html): the process of pairing an instinctive, conditioned reaction with specified stimuli.
-- [Nudge theory](https://whatfix.com/blog/nudge-theory/): change your environment.
+- [Classical Conditioning](https://www.simplypsychology.org/classical-conditioning.html): positive emotional experiences are associated with learning in an unconscious or automatic manner.
+- [Nudge theory](https://whatfix.com/blog/nudge-theory/): change your environment by removing all distractions.
 
 ## Flowmodoro
 - Every focus session is not equal; maybe you can focus for 1 hour nonstop or 2 hours nonstop. But make sure to rest for 1/3 of the of the time you can focus.
@@ -62,33 +72,24 @@ toc: true
 
 ---
 # Chunking Keywords
-- **Gather** the most important keywords, usually in the heading, sub-heading, or repetitive words.
+- **Gather** the most important keywords, usually in the heading, sub-heading, or repetitive words. You can do this by *skimming* for the first time, just to get a sense of the big picture.
 - **Limit** your keywords to 50.
 - **Grouping** those keywords into those with the same similarities.
 
 ---
 # Main Brain
-## How to take note
-- Use visuals: pictures, symbols, and doodles.
-- Make connections: 
-	- [inquiry-based learning](https://www.education.gov.au/australian-curriculum/national-stem-education-resources-toolkit/i-want-know-about-stem-education/what-works-best-when-teaching-stem/inquiry-based-learning#:~:text=Inquiry%2Dbased%20learning%20is%20an,reverses%20the%20order%20of%20learning.): actively asking questions and seeking answers.
-	- [cognitive load theory](https://theeducationhub.org.nz/an-introduction-to-cognitive-load-theory/): the way that new knowledge is constructed in [working memory](https://theeducationhub.org.nz/working-memory-and-its-role-in-teaching-and-learning/), and the way that permanent knowledge is built up and held in long-term memory.
-- Use freehand.
-- Non-linear.
-- I use an app on my iPad called Freeform.
-
-### Use Mind Map
-- Focus on building logic and concepts by actively asking, "**Why is it important?**" and "**How does it relate?**" from the keywords we gathered before.
-- Chunking by importance
-- Directional/Flow
-- Relationship by your logic
-- Intuitive and deeply connected
+## Mind Map
+- Focus on building *logic* and *concepts* by actively asking, "**Why is it important?**" and "**How does it relate?**" from the keywords we gathered before.
+- Chunking by importance.
+- Directional/Flow.
+- Relationship by your logic.
+- Intuitive and deeply connected.
 - This is how you made the mind map : [Ultimate Guide](https://www.youtube.com/embed/vzbQ8qZKpeg?si=dj_ay-0nZth-G9xT&amp;start=828)
 
 ---
 # Second Brain
 - This is **the simplest** example of using Zettelkasten in Obsidian: [Step-by-step guide](https://www.youtube.com/watch?v=E6ySG7xYgjY)
-- Remember, it's named the second brain for storing details. Your main brain still needs to process the logic and concepts.
+- Remember, it's called the second brain as it is used to store details. Your main brain still needs to **process** the logic and concepts.
 - Use bullet points to describe the main points from the textbox, paper, or slides. But don't forget to include the source and the page number so you don't waste time searching for those if you need the information in the future.
 
 ## Memorization
@@ -103,6 +104,7 @@ toc: true
 - [Interleaving](https://www.coursera.org/articles/interleaving) (learn from multiple different angles) use this technique while constantly updating your mind map.
 - Constantly zoom out (see bigger picture) and zoom in to find gaps in the mind map.
 - [Spaced retrieval](https://pdf.retrievalpractice.org/SpacingGuide.pdf): accurate recall of information over progressively longer periods of time. Usually on the same day when you learn the concept, three days later, one week later, and one month later.
+- Teach to others (Feynman technique); you can write blog posts and share it with the community.
 
 ---
 # Reflection
