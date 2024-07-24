@@ -88,6 +88,7 @@ toc: true
 
 ---
 # Second Brain
+## Zettelkasten 
 - This is **the simplest** example of using Zettelkasten in Obsidian: [Step-by-step guide](https://www.youtube.com/watch?v=E6ySG7xYgjY)
 - Remember, it's called the second brain as it is used to store details. Your main brain still needs to **process** the logic and concepts.
 - Use bullet points to describe the main points from the textbox, paper, or slides. But don't forget to include the source and the page number so you don't waste time searching for those if you need the information in the future.
