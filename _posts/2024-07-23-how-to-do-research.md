@@ -80,6 +80,7 @@ toc: true
 # Main Brain
 ## Mind Map
 - Focus on building *logic* and *concepts* by actively asking, "**Why is it important?**" and "**How does it relate?**" from the keywords we gathered before while ***rereading thoroughtly***.
+- If you encounter keywords that you don't understand, just use Google to grasp the meaning of the keyword for no longer than 30 seconds.
 - Chunking by importance.
 - Directional/Flow.
 - Relationship by your logic.
