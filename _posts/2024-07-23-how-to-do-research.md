@@ -79,12 +79,12 @@ toc: true
 ---
 # Main Brain
 ## Mind Map
-- Focus on building *logic* and *concepts* by actively asking, "**Why is it important?**" and "**How does it relate?**" from the keywords we gathered before.
+- Focus on building *logic* and *concepts* by actively asking, "**Why is it important?**" and "**How does it relate?**" from the keywords we gathered before while ***rereading thoroughtly***.
 - Chunking by importance.
 - Directional/Flow.
 - Relationship by your logic.
 - Intuitive and deeply connected.
-- This is how you made the mind map : [Ultimate Guide](https://www.youtube.com/embed/vzbQ8qZKpeg?si=dj_ay-0nZth-G9xT&amp;start=828)
+- Examples of good mind maps : [Ultimate Guide](https://www.youtube.com/embed/vzbQ8qZKpeg?si=dj_ay-0nZth-G9xT&amp;start=828)
 
 ---
 # Second Brain
