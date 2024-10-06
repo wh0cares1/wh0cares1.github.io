@@ -15,6 +15,8 @@ For example, an interpreter within the browser reads and executes JavaScript wit
 ---
 # JavaScript Execution Context
 ## Event Loop
+- The event loop continuously monitors the Call Stack and the Callback Queue. If the call stack is empty, the event loop executes the first task in the callback queue.
+
 ### Call Stack
 - JavaScript is a single threaded programming language, which means it has a single Call Stack. Therefore, it can do one thing at a time.
 - The Call Stack is a data structure that tracks where we are in the program. 
@@ -225,7 +227,7 @@ Buffers are typically used to handle raw binary data, which is not natively supp
     - These trigger automatically when properties are accessed or modified, allowing for more controlled property behavior.
 
 ---
-# Source
+# Sources
 - [Web Browser Engineering](https://browser.engineering/)
 - [Advanced JavaScript Cheat Sheet](https://zerotomastery.io/cheatsheets/javascript-cheatsheet-the-advanced-concepts/)
 - [Understanding V8’s Bytecode](https://medium.com/dailyjs/understanding-v8s-bytecode-317d46c94775)
