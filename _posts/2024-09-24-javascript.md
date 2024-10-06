@@ -9,11 +9,17 @@ toc: true
 
 # Introduction
 A browser, such as Google Chrome, works behind the scenes by using a combination of compilers and interpreters to parse and execute JavaScript code seen on web pages. [Google's comic](https://www.google.com/googlebooks/chrome/med_00.html) gives a fantastic visual picture of this. When you view a webpage, the browser does more than simply show the text and graphics; it also executes the underlying code to make everything interactive. Here's when compilers and interpreters come in handy.
+
 For example, an interpreter within the browser reads and executes JavaScript without first converting it into machine code. This enables quick execution and the dynamic behavior of current web pages. To improve performance, current browsers like as Chrome use just-in-time (JIT) compilers, which turn frequently used code into highly optimized machine code, resulting in faster execution. This combination of interpretation for flexibility and compilation for performance allows current browsers to execute web apps in an efficient and powerful manner.
 
 ---
 # JavaScript Execution Context
 ## Call Stack & Event Loop
+- JavaScript is a single threaded programming language, which means it has a single Call Stack. Therefore, it can do one thing at a time.
+- The Call Stack is a data structure that tracks where we are in the program. 
+- If we enter a function, we move it to the top of the stack. When we return from a function, we pop off the top of the stack. That is all the stack can do. Each element in the Call Stack is called a **Stack Frame**. 
+- Running code on a single thread can be simple since you don't have to deal with the complex problems that arise in multi-threaded settings, such as deadlocks.
+
 ## Memory Management
 ### Memory Layout
 V8's heap is divided into multiple spaces.
@@ -25,10 +31,12 @@ V8's heap is divided into multiple spaces.
 - Large object space
 - Code large object space
 - New large object space
+
 New space:
 - Most new objects end up here.
 - Memory given out **linearly**.
 - Divided into two regions.
+
 Old space:
 - Objects that survived two GC runs.
 - Less likely to be moved around.
@@ -56,30 +64,29 @@ Readmore :
 ---
 # JavaScript Primitives and Objects
 ## **JavaScript Primitives**
-1. **Symbol**:
+1. **Symbol**
     - Unique and immutable, often used as object property keys to avoid property name collisions.
-2. **String**:
+2. **String**
     - A sequence of characters used to represent and manipulate text.
-3. **Boolean**:
+3. **Boolean**
     - Represents logical true/false values, crucial for control flow.
-4. **Number**:
-    - Includes:
-        - **Int**: Integer values.
-        - **BigInt**: For working with arbitrarily large integers beyond the safe limit of `Number`.
-        - **Double**: Represents floating-point numbers, which are more common in JavaScript.
-5. **Undefined**:
+4. **Number**
+    - **Int**: Integer values.
+    - **BigInt**: For working with arbitrarily large integers beyond the safe limit of `Number`.
+    - **Double**: Represents floating-point numbers, which are more common in JavaScript.
+5. **Undefined**
     - A variable that has been declared but not yet assigned a value.
-6. **Null**:
+6. **Null**
     - Represents the intentional absence of any object value.
 
 ## **JavaScript Native Objects**
 ### **Prototype-based Object Model**
-1. **Class**:
+1. **Class**
     - JavaScript supports classes built on prototypes, allowing object-oriented design patterns like inheritance.
-2. **Inheritance**:
+2. **Inheritance**
     - **`this.__proto__`**: Points to the object's prototype, showing inheritance.
     - **`super`**: Calls functions on an object's parent.
-3. **`this` in Arrow Functions**:
+3. **`this` in Arrow Functions**
     - Arrow functions don't have their own `this` context, so they bind `this` lexically.
 
 ### **Object Properties Access (Dot(`.`) and Bracket(`[]`) Notation)**
