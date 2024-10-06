@@ -146,9 +146,10 @@ Readmore :
 ---
 # JavaScript Engines: V8 Internals
 - JavaScript uses “[prototype-based-inheritance](https://262.ecma-international.org/6.0/#sec-objects)”, where each object has a reference to a prototype object or “shape” whose properties it incorporates.
-- The compiler works ahead of time by utilizing a "Profiler" to monitor and watch code that needs to be optimized. If there is a "hot function," the compiler converts it into efficient machine code for execution. Otherwise, if it detects that a previously optimized "hot function" is no longer being utilized, it will "deoptimize" it and return it to bytecode.
 
 ## Ignition (V8’s Interpreter)
+- When JavaScript is first loaded, it is translated to bytecode and executed by Ignition, V8's interpreter. Ignition is quick to load code, but slow to execute it repeatedly since interpreting bytecode is less efficient than running compiled machine code.
+
 ### Ignition Bytecode
 - Ignition is a register machine
 - Implicit accumulator register
@@ -162,7 +163,80 @@ Type feedback is crucial for optimizations:
 - Addition of integers is very simple
 - Integer feedback allows to lower instruction to integer addition
 
-## Turbofan Pipeline
+### Readmore Ignition
+- [Firing up the Ignition interpreter](https://v8.dev/blog/ignition-interpreter)
+- [Ignition: Jump-starting an Interpreter for V8](https://docs.google.com/presentation/d/1HgDDXBYqCJNasBKBDf9szap1j4q4wnSHhOYpaNy5mHU/edit#slide=id.g1357e6d1a4_0_58)
+- [Ignition: An Interpreter for V8](https://docs.google.com/presentation/d/1OqjVqRhtwlKeKfvMdX6HaCIu9wpZsrzqpIVIwQSuiXQ/edit)
+- [Ignition Design Document](https://docs.google.com/document/d/11T2CRex9hXxoJwbYqVQ32yIPMh0uouUZLdyrtmMoL44/edit?ts=56f27d9d#heading=h.6jz9dj3bnr8t)
+- [Ignition: Register Equivalence Optimization](https://docs.google.com/document/d/1wW_VkkIwhAAgAxLYM0wvoTEkq8XykibDIikGpWH7l1I/edit?ts=570d7131#heading=h.6jz9dj3bnr8t)
+- [Understanding V8’s Bytecode](https://medium.com/dailyjs/understanding-v8s-bytecode-317d46c94775)
+- [Blazingly Fast Parsing, Part 2](https://v8.dev/blog/preparser)
+- [A guided tour through Chrome's javascript compiler](https://docs.google.com/presentation/d/1DJcWByz11jLoQyNhmOvkZSrkgcVhllIlCHmal1tGzaw/edit#slide=id.p)
+
+## Sparkplug (V8’s non optimizing compiler)
+- Sparkplug converts the bytecode directly to machine code without doing extensive optimization. Its goal is to create machine code faster than the optimizing compiler (Turbofan), allowing execution to proceed more quickly, particularly for smaller or short-lived routines that may not benefit from severe optimization.
+### Readmore Sparkplug
+- [Sparkplug — a non-optimizing JavaScript compiler](https://v8.dev/blog/sparkplug)
+- [Sparkplug](https://docs.google.com/document/d/13c-xXmFOMcpUQNqo66XWQt3u46TsBjXrHrh4c045l-A/edit)
+- [Sparkplug, the new lightning-fast V8 baseline JavaScript compiler](https://medium.com/@yanguly/sparkplug-v8-baseline-javascript-compiler-758a7bc96e84)
+
+## Maglev (V8's Mid Tier Compiler)
+- Maglev creates **less optimized** code than the top-tier JIT compiler, TurboFan, but it compiles quicker. JIT compilers are prevalent in Javascript engines, with the expectation that many layer compilers will provide a better compromise between compilation time and runtime optimization.
+- Maglev converts bytecodes into SSA (Static Single-Assignment) nodes, which are defined in the file [maglev-ir.h](https://source.chromium.org/chromium/chromium/src/+/376123191e0361a8639c1783abcf2490a506c748:v8/src/maglev/maglev-ir.h).
+- Maglev's compilation process consists of two optimization phases: [building a graph](https://source.chromium.org/chromium/chromium/src/+/376123191e0361a8639c1783abcf2490a506c748:v8/src/maglev/maglev-compiler.cc;l=403) from SSA nodes and [optimizing Phi value](https://source.chromium.org/chromium/chromium/src/+/376123191e0361a8639c1783abcf2490a506c748:v8/src/maglev/maglev-compiler.cc;l=421) representations.
+
+### Readmore Maglev
+- [Maglev - V8’s Fastest Optimizing JIT](https://v8.dev/blog/maglev)
+- [Maglev Doc](https://docs.google.com/document/d/13CwgSL4yawxuYg3iNlM-4ZPCB8RgJya6b8H_E2F-Aek/edit#heading=h.djws22xta9wz)
+- [Maglev Compiler](https://chromium.googlesource.com/v8/v8/+/f73f3b3b5122b806d898c8799da2c104d6bc2c56/src/maglev/maglev-compiler.cc)
+- [Maglev](https://chromium.googlesource.com/v8/v8/+/refs/heads/main/src/maglev/)
+
+## Turbofan (V8’s JIT Compiler)
+- The compiler works ahead of time by utilizing a "Profiler" to monitor and watch code that needs to be optimized. If there is a "hot function," the compiler converts it into efficient machine code for execution. Otherwise, if it detects that a previously optimized "hot function" is no longer being utilized, it will "deoptimize" it and return it to bytecode.
+
+### Pipelining
+
+### Readmore Turbofan
+- [An Introduction to Speculative Optimization in V8](https://benediktmeurer.de/2017/12/13/an-introduction-to-speculative-optimization-in-V8/)
+- [Digging into the TurboFan JIT](https://v8.dev/blog/turbofan-jit)
+- [Deoptimize me not, v8](https://darksi.de/a.deoptimize-me-not/)
+- [How to start JIT-ting](https://darksi.de/4.how-to-start-jitting/)
+- [Sea of Nodes](https://darksi.de/d.sea-of-nodes/)
+- [Turbofan Docs](https://v8.dev/docs/turbofan)
+- [Hooking up the Ignition to the Turbofan](https://docs.google.com/presentation/d/1chhN90uB8yPaIhx_h2M3lPyxPgdPmkADqSNAoXYQiVE/edit)
+- [Tale of Turbofan](https://benediktmeurer.de/2017/03/01/v8-behind-the-scenes-february-edition)
+- [Ignition+TurboFan and ES2015](https://benediktmeurer.de/2016/11/25/v8-behind-the-scenes-november-edition)
+- [CodeStubAssembler Redux](https://docs.google.com/presentation/d/1u6bsgRBqyVY3RddMfF1ZaJ1hWmqHZiVMuPRw_iKpHlY/edit#slide=id.p)
+- [Overview of the Turbofan Compiler](https://docs.google.com/presentation/d/1H1lLsbclvzyOF3IUR05ZUaZcqDxo7_-8f4yJoxdMooU/edit)
+- [Turbofan IR](https://docs.google.com/presentation/d/1Z9iIHojKDrXvZ27gRX51UxHD-bKf1QcPzSijntpMJBM)
+- [Turbofan’s JIT Design](https://docs.google.com/presentation/d/1sOEF4MlF7LeO7uq-uThJSulJlTh--wgLeaVibsbb3tc)
+- [Fast Arithmetic for Dynamic Languages](https://docs.google.com/a/google.com/presentation/d/1wZVIqJMODGFYggueQySdiA3tUYuHNMcyp_PndgXsO1Y)
+- [Deoptimization in V8](https://docs.google.com/presentation/d/1Z6oCocRASCfTqGq1GCo1jbULDGS-w-nzxkbVF7Up0u0)
+- [Turbofan a new code generation architecture for V8](https://docs.google.com/presentation/d/1_eLlVzcj94_G4r9j9d_Lj5HRKFnq6jgpuPJtnmIBs88)
+- [An Internship on Lazyness Slides](https://docs.google.com/presentation/d/1AVu1wiz6Deyz1MDlhzOWZDRn6g_iFkcqsGce1F23i-M/edit)
+- [An internship on laziness: lazy unlinking of deoptimized functions](https://v8.dev/blog/lazy-unlinking)
+- [Turbofan: Function Context Specification](https://docs.google.com/document/d/1CJbBtqzKmQxM1Mo4xU0ENA7KXqb1YzI6HQU8qESZ9Ic/edit)
+- [Turbofan: Rest Parameters and Arguments Exotic Objects optimization plan](https://docs.google.com/document/d/1DvDx3Xursn1ViV5k4rT4KB8HBfBb2GdUy3wzNfJWcKM/edit)
+- [Turbofan Developer Tools Integration](https://docs.google.com/document/d/1zl0IA7dbPffvPPkaCmLVPttq4BYIfAe2Qy8sapkYgRE)
+- [Turbofan Inlining](https://docs.google.com/document/d/1l-oZOW3uU4kSAHccaMuUMl_RCwuQC526s0hcNVeAM1E)
+- [Turbofan Inlining Heuristics](https://docs.google.com/document/d/1VoYBhpDhJC4VlqMXCKvae-8IGuheBGxy32EOgC2LnT8)
+- [TurboFan redundant bounds and overflow check elimination](https://docs.google.com/document/d/1R7-BIUnIKFzqki0jR4SfEZb3XmLafa04DLDrqhxgZ9U)
+- [Turbofan Lazy deoptimization without code patching](https://docs.google.com/document/d/1ELgd71B6iBaU6UmZ_lvwxf_OrYYnv0e4nuzZpK05-pg)
+- [Turbofan Register Allocator](https://docs.google.com/document/d/1aeUugkWCF1biPB4tTZ2KT3mmRSDV785yWZhwzlJe5xY)
+- [Projection nodes in TurboFan](https://docs.google.com/document/d/1C9P8T98P1T_r2ymuUFz2jFWLUL7gbb6FnAaRjabuOMY/edit)
+- [Builtin optimization guards in TurboFan](https://docs.google.com/document/d/1R0zPOsX95L-x19PTfMJhIcnDcuwZJ9zl04gpmCwIyjs/edit)
+- [Investigation of (transpiled) class performance in V8](https://docs.google.com/document/d/1paV2Re7YAqwJlMvunToRV8ZqBXHzSaoXiLrWJsmZDVg/edit)
+- [In-place field representation changes](https://docs.google.com/document/d/10CbqmRs-i8Jy0IE3ToEP25_FD8gj2kEHvfd3N0icN3g/preview)
+- [ES2015 and beyond performance plan](https://docs.google.com/document/d/1EA9EbfnydAmmU_lM8R_uEMQ-U_v4l9zulePSBkeYWmY/edit)
+- [Fast string concatenation in JavaScript](https://docs.google.com/document/d/1o-MJPAddpfBfDZCkIHNKbMiM86iDFld7idGbNQLuKIQ/preview)
+- [Context-sensitive JavaScript operators in TurboFan](https://docs.google.com/document/d/1x3ittDiaRksghx9My0Lom8Bau2iJELJCjpH2jW9q6tE/edit)
+- [Fast frozen & sealed elements in V8](https://docs.google.com/document/d/1X6zO5F_Zojizn2dmo_ftaOWsY8NltPHUhudBbUzMxnc/preview)
+- [Faster calls with arguments mismatch](https://docs.google.com/document/d/156nh17BpyLNmDmONyC_ZQUbi0h6goNysds2DLXcAzVc/preview)
+- [Faster Runtime API Calls](https://docs.google.com/document/d/1vjddeZw9HmAWOy2pkJtDOW0KtAueLpvGlY1od-uijd0/edit#heading=h.n1atlriavj6v)
+- [Adventures in JIT compilation: Part 1 - an interpreter](https://eli.thegreenplace.net/2017/adventures-in-jit-compilation-part-1-an-interpreter/ "Permalink to Adventures in JIT compilation: Part 1 - an interpreter")
+- [Adventures in JIT compilation: Part 2 - an x64 JIT](https://eli.thegreenplace.net/2017/adventures-in-jit-compilation-part-2-an-x64-jit/ "Permalink to Adventures in JIT compilation: Part 2 - an x64 JIT")
+- [Escape Analysis in Turbofan](https://docs.google.com/presentation/d/1YdpdI1aeBnlchyAYvjw1Alm3QcoenPm6x4D7DA4pQUY/edit#slide=id.p)
+- [A crash course in just-in-time (JIT) compilers](https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/)
 
 ---
 # Memory and Buffer Management in JavaScript
