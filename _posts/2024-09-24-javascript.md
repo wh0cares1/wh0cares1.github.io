@@ -198,17 +198,6 @@ Callback Hell & Solutions
     - These trigger automatically when properties are accessed or modified, allowing for more controlled property behavior.
 
 ---
-# Common JavaScript Vulnerabilities
-## Cross-Site Scripting (XSS)
-
-## Prototype Pollution
-
-## PostMessages()
-
----
-# What's Next?
-
----
 # Source
 - [Web Browser Engineering](https://browser.engineering/)
 - [Advanced JavaScript Cheat Sheet](https://zerotomastery.io/cheatsheets/javascript-cheatsheet-the-advanced-concepts/)
