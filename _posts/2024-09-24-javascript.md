@@ -14,11 +14,14 @@ For example, an interpreter within the browser reads and executes JavaScript wit
 
 ---
 # JavaScript Execution Context
-## Call Stack & Event Loop
+## Call Stack
 - JavaScript is a single threaded programming language, which means it has a single Call Stack. Therefore, it can do one thing at a time.
 - The Call Stack is a data structure that tracks where we are in the program. 
 - If we enter a function, we move it to the top of the stack. When we return from a function, we pop off the top of the stack. That is all the stack can do. Each element in the Call Stack is called a **Stack Frame**. 
 - Running code on a single thread can be simple since you don't have to deal with the complex problems that arise in multi-threaded settings, such as deadlocks.
+
+## Event Loop
+
 
 ## Memory Management
 ### Memory Layout
@@ -193,7 +196,7 @@ Buffers are typically used to handle raw binary data, which is not natively supp
 - Key Concepts
 	- `async function`: Declares an asynchronous function that implicitly returns a promise. 
 	- **`await`**: Pauses the execution of an `async` function until a promise settles (fulfills or rejects). It allows you to retrieve the resolved value without chaining `.then()` calls.
-    
+
 ### Proxy
 1. **Property Lookup**: Custom behavior for property access.
 2. **Assignment**: Intercepts property assignment.
