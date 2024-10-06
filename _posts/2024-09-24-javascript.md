@@ -180,16 +180,26 @@ Buffers are typically used to handle raw binary data, which is not natively supp
 - Let you to access any area of the buffer using **a specific byte offset** and **value type**. This is important when dealing with complex binary formats in which data types may not be properly aligned.
 
 ---
-# Async JavaScript Internals
-Promises and Async/Await
-Callback Hell & Solutions
+# Asynchronous
+### Promises
+- A JavaScript object that indicates the eventual success (or failure) of an asynchronous action and its value. It serves as a placeholder for the outcome of an operation that hasn't yet finished but will at some time in the future.
+- Key Concepts
+	- **Pending**: The initial state. The operation is ongoing, and its result isn't available yet.
+	- **Fulfilled**: The operation has completed successfully, and the promise now holds the resulting value.
+	- **Rejected**: The operation failed, and the promise holds the reason for failure (typically an error object).
 
-### **Proxy**
+### Async/Await
+- Async/Await is a more current and syntactically clear approach to working with promises. Async/await was introduced in ES2017 (ES8) and allows asynchronous code to be expressed in a more synchronous, linear way, which improves readability and maintainability.
+- Key Concepts
+	- `async function`: Declares an asynchronous function that implicitly returns a promise. 
+	- **`await`**: Pauses the execution of an `async` function until a promise settles (fulfills or rejects). It allows you to retrieve the resolved value without chaining `.then()` calls.
+    
+### Proxy
 1. **Property Lookup**: Custom behavior for property access.
 2. **Assignment**: Intercepts property assignment.
 3. **Function Invocation**: Controls function calls within a proxy object.
 
-### **Callbacks**
+### Callbacks
 1. **Function Arguments**: JavaScript's standard built-in callback system often passes functions as parameters.
 2. **Object Converters**:
     - **`valueOf`**: Converts an object to a primitive.
