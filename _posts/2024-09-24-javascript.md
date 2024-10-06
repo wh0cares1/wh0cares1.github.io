@@ -39,11 +39,11 @@ For example, an interpreter within the browser reads and executes JavaScript wit
 - These are tasks that have a greater priority than other tasks in the queue. Callbacks for MutationObserver and Promises are two examples. Microtasks are completed before the next task in the callback queue.
 
 ### Readmore about Event Loop
-- [Jake Archibald - In The Loop - JSConf.Asia](https://www.youtube.com/watch?v=cCOL7MC4Pl0)
-- [Philip Roberts: What is an event loop? | JSConf EU](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
+- [Jake Archibald - In The Loop](https://www.youtube.com/watch?v=cCOL7MC4Pl0)
+- [Philip Roberts: What is an event loop?](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
 - [The Node.js Event Loop](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick#the-nodejs-event-loop)
 - [Using microtasks in JavaScript with queueMicrotask()](https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide)
-- [Further Adventures of the Event Loop - Erin Zimmer - JSConf EU 2018](https://www.youtube.com/watch?v=u1kqx6AenYw)
+- [Further Adventures of the Event Loop - Erin Zimmer](https://www.youtube.com/watch?v=u1kqx6AenYw)
 
 ## Memory Management
 ### Memory Layout
