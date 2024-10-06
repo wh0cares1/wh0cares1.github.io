@@ -141,9 +141,43 @@ Type feedback is crucial for optimizations:
 
 ---
 # Memory and Buffer Management in JavaScript
-## Understanding Buffers
+When dealing with binary data or interfacing with Web APIs, memory management becomes more explicit. This is where buffers, typed arrays, and array buffers come into play.
 
-## Typed Arrays and Array Buffers
+## Understanding Buffers
+Buffers are typically used to handle raw binary data, which is not natively supported by JavaScript's conventional data types such as strings and arrays. Buffers allow you to process binary streams of data more effectively.
+
+### Key Characteristics of Buffers:
+- **Fixed Size**: Buffers have a predefined size, which means once created, the amount of memory they consume cannot change.
+- **Raw Binary Data**: Buffers store raw bytes, unlike JavaScript strings that are encoded in UTF-16.
+- **Useful in Network and File Operations**: Buffers are particularly useful in low-level operations like interacting with network protocols, reading or writing binary files, or working with images, videos, and other media streams.
+
+### Key Characteristics of Buffers:
+- **Fixed Size**: Buffers have a predefined size, which means once created, the amount of memory they consume cannot change.
+- **Raw Binary Data**: Buffers store raw bytes, unlike JavaScript strings that are encoded in UTF-16.
+- **Useful in Network and File Operations**: Buffers are particularly useful in low-level operations like interacting with network protocols, reading or writing binary files, or working with images, videos, and other media streams.
+## Array Buffers
+- An **ArrayBuffer** is a generic, fixed-length block of raw memory.
+- An ArrayBuffer doesn’t have any methods to manipulate this data; you need to use a **Typed Array** or **DataView** to access the memory.
+- Use Cases:
+	- **WebGL**: Typed arrays are essential in WebGL for handling 3D graphics, where binary data representing vertices, textures, and shaders needs to be passed directly to the GPU.
+	- **Networking**: When working with low-level protocols or binary streaming over WebSockets or other network interfaces.
+	- **File I/O**: Reading and writing binary files (e.g., images, audio files) using File APIs or interacting with file system streams in Node.js.
+	- **Multimedia**: Manipulating images, audio, and video data for encoding/decoding purposes.
+	- **WebAssembly**: Typed arrays are used in conjunction with WebAssembly to provide memory access for high-performance applications.
+
+### Typed Arrays
+- Typed Arrays are array-like objects that provide a view over an ArrayBuffer, allowing you to read and write binary data directly.
+- Common Typed Array Types:
+	- **`Int8Array`**: 8-bit signed integer
+	- **`Uint8Array`**: 8-bit unsigned integer (no negative values)
+	- **`Int16Array`**: 16-bit signed integer
+	- **`Uint16Array`**: 16-bit unsigned integer
+	- **`Float32Array`**: 32-bit floating-point number
+	- **`Float64Array`**: 64-bit floating-point number
+
+### DataView
+- Another way to manipulate ArrayBuffers, offering more flexibility than typed arrays.
+- Let you to access any area of the buffer using **a specific byte offset** and **value type**. This is important when dealing with complex binary formats in which data types may not be properly aligned.
 
 ---
 # Async JavaScript Internals
