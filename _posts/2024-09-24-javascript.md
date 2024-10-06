@@ -90,49 +90,49 @@ Readmore :
 ---
 # JavaScript Primitives and Objects
 ## **JavaScript Primitives**
-1. **Symbol**
+- **Symbol**
     - Unique and immutable, often used as object property keys to avoid property name collisions.
-2. **String**
+- **String**
     - A sequence of characters used to represent and manipulate text.
-3. **Boolean**
+- **Boolean**
     - Represents logical true/false values, crucial for control flow.
-4. **Number**
+- **Number**
     - **Int**: Integer values.
     - **BigInt**: For working with arbitrarily large integers beyond the safe limit of `Number`.
     - **Double**: Represents floating-point numbers, which are more common in JavaScript.
-5. **Undefined**
+- **Undefined**
     - A variable that has been declared but not yet assigned a value.
-6. **Null**
+- **Null**
     - Represents the intentional absence of any object value.
 
 ## **JavaScript Native Objects**
 ### **Prototype-based Object Model**
-1. **Class**
+- **Class**
     - JavaScript supports classes built on prototypes, allowing object-oriented design patterns like inheritance.
-2. **Inheritance**
+- **Inheritance**
     - **`this.__proto__`**: Points to the object's prototype, showing inheritance.
     - **`super`**: Calls functions on an object's parent.
-3. **`this` in Arrow Functions**
+- **`this` in Arrow Functions**
     - Arrow functions don't have their own `this` context, so they bind `this` lexically.
 
 ### **Object Properties Access (Dot(`.`) and Bracket(`[]`) Notation)**
-1. **Attributes**:
+- **Attributes**:
     - **value**: Holds the data.
     - **writeable**: Defines if the property can be modified.
     - **enumerable**: Determines if the property shows up during iteration, like `Object.keys()` or the `in` operator.
     - **configurable**: Controls if the property can be deleted or changed, such as defining a setter or getter.
-2. **Computed Properties**:
+- **Computed Properties**:
     - **Setter/Getter**: Enable functions to be called when getting or setting property values, making them dynamic.
 
 ## **Special JavaScript Objects**
-1. **Array**:
+- **Array**:
     - **Typed**: Typed arrays allow for working with raw binary data in buffers.
     - **Length**: Automatically updates as items are added or removed.
-2. **RegExp**:
+- **RegExp**:
     - Regular expressions for pattern matching within strings.
-3. **ArrayBuffer**:
+- **ArrayBuffer**:
     - A low-level binary data buffer, essential for handling binary data, often used with typed arrays.
-4. **Function**:
+- **Function**:
     - **Passed as object**: Functions are first-class objects and can be passed around like other objects.
     - **Hoisted**: Function declarations are hoisted, allowing them to be called before their definition.
     - **Arrow Function**:
@@ -220,16 +220,16 @@ Buffers are typically used to handle raw binary data, which is not natively supp
 	- **`await`**: Pauses the execution of an `async` function until a promise settles (fulfills or rejects). It allows you to retrieve the resolved value without chaining `.then()` calls.
 
 ### Proxy
-1. **Property Lookup**: Custom behavior for property access.
-2. **Assignment**: Intercepts property assignment.
-3. **Function Invocation**: Controls function calls within a proxy object.
+- **Property Lookup**: Custom behavior for property access.
+- **Assignment**: Intercepts property assignment.
+- **Function Invocation**: Controls function calls within a proxy object.
 
 ### Callbacks
-1. **Function Arguments**: JavaScript's standard built-in callback system often passes functions as parameters.
-2. **Object Converters**:
+- **Function Arguments**: JavaScript's standard built-in callback system often passes functions as parameters.
+- **Object Converters**:
     - **`valueOf`**: Converts an object to a primitive.
     - **`toString`**: Converts an object to a string representation.
-3. **Property Getters and Setters**:
+- **Property Getters and Setters**:
     - These trigger automatically when properties are accessed or modified, allowing for more controlled property behavior.
 
 ---
