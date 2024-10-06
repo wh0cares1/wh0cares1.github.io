@@ -16,6 +16,12 @@ For example, an interpreter within the browser reads and executes JavaScript wit
 # JavaScript Execution Context
 ## Event Loop
 - The event loop continuously monitors the Call Stack and the Callback Queue. If the call stack is empty, the event loop executes the first task in the callback queue.
+- Workflow: 
+    - JavaScript executes synchronous code and adds functions to the call stack.
+    - The browser's Web APIs support asynchronous functions (such as setTimeout and fetch).
+    - Once the asynchronous task is completed, the relevant callback is added to the callback queue.
+    - The event loop checks whether the call stack is empty. If it is, the next job from the callback queue is moved to the call stack and executed.
+    - If any microtasks are available, they are executed before the next callback in the queue.
 
 ### Call Stack
 - JavaScript is a single threaded programming language, which means it has a single Call Stack. Therefore, it can do one thing at a time.
