@@ -14,14 +14,28 @@ For example, an interpreter within the browser reads and executes JavaScript wit
 
 ---
 # JavaScript Execution Context
-## Call Stack
+## Event Loop
+### Call Stack
 - JavaScript is a single threaded programming language, which means it has a single Call Stack. Therefore, it can do one thing at a time.
 - The Call Stack is a data structure that tracks where we are in the program. 
 - If we enter a function, we move it to the top of the stack. When we return from a function, we pop off the top of the stack. That is all the stack can do. Each element in the Call Stack is called a **Stack Frame**. 
 - Running code on a single thread can be simple since you don't have to deal with the complex problems that arise in multi-threaded settings, such as deadlocks.
 
-## Event Loop
+### Web APIs
+- JavaScript in the browser has access to a variety of Web APIs, including setTimeout(), XMLHttpRequest, and DOM event listeners. These APIs enable JavaScript to offload operations that might otherwise stall the main thread, such as making network queries or waiting for a timeout.
 
+### Callback Queue (Task Queue)
+- When an asynchronous job (such as an API response or a timeout) is ready to be handled, the related callback is added to the Callback Queue.
+
+### Microtasks
+- These are tasks that have a greater priority than other tasks in the queue. Callbacks for MutationObserver and Promises are two examples. Microtasks are completed before the next task in the callback queue.
+
+### Readmore about Event Loop
+- [Jake Archibald - In The Loop - JSConf.Asia](https://www.youtube.com/watch?v=cCOL7MC4Pl0
+- [Philip Roberts: What is an event loop? | JSConf EU](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
+- [The Node.js Event Loop](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick#the-nodejs-event-loop)
+- [Using microtasks in JavaScript with queueMicrotask()](https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide)
+- [Further Adventures of the Event Loop - Erin Zimmer - JSConf EU 2018](https://www.youtube.com/watch?v=u1kqx6AenYw)
 
 ## Memory Management
 ### Memory Layout
