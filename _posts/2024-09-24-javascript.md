@@ -47,6 +47,7 @@ The garbage collector also runs every time a JavaScript file is executed, so it 
 V8 Heap is split into different regions called generations garbage collection 
 - Young generation using semi-spaces and **Copying Collection** with parallel Scavenger (marks, copies and updates pointers at the same time)
 - Old generation using **[Mark-Sweep](https://wingolog.org/archives/2023/12/08/v8s-mark-sweep-nursery)/Mark-Sweep-Compact** with incremental marking (tri-color marking and write barriers)
+
 Readmore :
 - [Garbage Collection: V8’s Orinoco](https://medium.com/@nikolay.veretelnik/garbage-collection-v8s-orinoco-452b70761f0c)
 - [Trash talk: the Orinoco garbage collector](https://v8.dev/blog/trash-talk)
@@ -164,22 +165,23 @@ Callback Hell & Solutions
 
 ---
 # Common JavaScript Vulnerabilities
-Cross-Site Scripting (XSS)
+## Cross-Site Scripting (XSS)
 
-Prototype Pollution
+## Prototype Pollution
+
+## PostMessages()
 
 ---
 # What's Next?
 
 ---
 # Source
-https://zerotomastery.io/cheatsheets/javascript-cheatsheet-the-advanced-concepts/
-https://medium.com/dailyjs/understanding-v8s-bytecode-317d46c94775
-https://www.amazon.com/Professional-JavaScript-Developers-Matt-Frisbie/dp/1119366445
-https://eloquentjavascript.net/
-https://github.com/getify/You-Dont-Know-JS
-https://en.wikipedia.org/wiki/Compiler
-https://www.google.com/googlebooks/chrome/med_00.html
-https://web.dev/articles/howbrowserswork
-https://browser.engineering/
-https://www.maxiferreira.com/blog/browser-engineering-1/
+- [Web Browser Engineering](https://browser.engineering/)
+- [Advanced JavaScript Cheat Sheet](https://zerotomastery.io/cheatsheets/javascript-cheatsheet-the-advanced-concepts/)
+- [Understanding V8’s Bytecode](https://medium.com/dailyjs/understanding-v8s-bytecode-317d46c94775)
+- [Professional JavaScript for Web Developers](https://www.amazon.com/Professional-JavaScript-Developers-Matt-Frisbie/dp/1119366445)
+- [Eloquent JavaScript](https://eloquentjavascript.net/)
+- [You Don't Know JS Yet](https://github.com/getify/You-Dont-Know-JS)
+- [Compiler](https://en.wikipedia.org/wiki/Compiler)
+- [How browsers work](https://web.dev/articles/howbrowserswork)
+- [Web Browser Engineering](https://www.maxiferreira.com/blog/browser-engineering-1/)
