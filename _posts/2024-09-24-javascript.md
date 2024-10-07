@@ -340,11 +340,6 @@ Buffers are typically used to handle raw binary data, which is not natively supp
 - **Raw Binary Data**: Buffers store raw bytes, unlike JavaScript strings that are encoded in UTF-16.
 - **Useful in Network and File Operations**: Buffers are particularly useful in low-level operations like interacting with network protocols, reading or writing binary files, or working with images, videos, and other media streams.
 
-### Key Characteristics of Buffers:
-- **Fixed Size**: Buffers have a predefined size, which means once created, the amount of memory they consume cannot change.
-- **Raw Binary Data**: Buffers store raw bytes, unlike JavaScript strings that are encoded in UTF-16.
-- **Useful in Network and File Operations**: Buffers are particularly useful in low-level operations like interacting with network protocols, reading or writing binary files, or working with images, videos, and other media streams.
-
 ## Array Buffers
 - An **ArrayBuffer** is a generic, fixed-length block of raw memory.
 - An ArrayBuffer doesn’t have any methods to manipulate this data; you need to use a **Typed Array** or **DataView** to access the memory.
