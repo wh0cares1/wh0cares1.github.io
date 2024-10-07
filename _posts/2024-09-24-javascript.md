@@ -175,6 +175,7 @@ Type feedback is crucial for optimizations:
 
 ## Sparkplug (V8’s non optimizing compiler)
 - Sparkplug converts the bytecode directly to machine code without doing extensive optimization. Its goal is to create machine code faster than the optimizing compiler (Turbofan), allowing execution to proceed more quickly, particularly for smaller or short-lived routines that may not benefit from severe optimization.
+
 ### Readmore Sparkplug
 - [Sparkplug — a non-optimizing JavaScript compiler](https://v8.dev/blog/sparkplug)
 - [Sparkplug](https://docs.google.com/document/d/13c-xXmFOMcpUQNqo66XWQt3u46TsBjXrHrh4c045l-A/edit)
@@ -192,6 +193,9 @@ Type feedback is crucial for optimizations:
 - [Maglev](https://chromium.googlesource.com/v8/v8/+/refs/heads/main/src/maglev/)
 
 ## Turbofan (V8’s JIT Compiler)
+- V8's Turbofan Compiler converts Ignition bytecode into assembly.
+- Turbofan translates the bytecode into "[Sea of Nodes](https://darksi.de/d.sea-of-nodes/)" and subsequently to assembly.
+- Turbofan is an optimizing compiler that use interpreter feedback to do "speculative" optimizations.
 - The compiler works ahead of time by utilizing a "Profiler" to monitor and watch code that needs to be optimized. If there is a "hot function," the compiler converts it into efficient machine code for execution. Otherwise, if it detects that a previously optimized "hot function" is no longer being utilized, it will "deoptimize" it and return it to bytecode.
 
 ### Pipelining
@@ -254,6 +258,7 @@ Buffers are typically used to handle raw binary data, which is not natively supp
 - **Fixed Size**: Buffers have a predefined size, which means once created, the amount of memory they consume cannot change.
 - **Raw Binary Data**: Buffers store raw bytes, unlike JavaScript strings that are encoded in UTF-16.
 - **Useful in Network and File Operations**: Buffers are particularly useful in low-level operations like interacting with network protocols, reading or writing binary files, or working with images, videos, and other media streams.
+
 ## Array Buffers
 - An **ArrayBuffer** is a generic, fixed-length block of raw memory.
 - An ArrayBuffer doesn’t have any methods to manipulate this data; you need to use a **Typed Array** or **DataView** to access the memory.
@@ -280,31 +285,38 @@ Buffers are typically used to handle raw binary data, which is not natively supp
 
 ---
 # Asynchronous
-### Promises
+## Promises
 - A JavaScript object that indicates the eventual success (or failure) of an asynchronous action and its value. It serves as a placeholder for the outcome of an operation that hasn't yet finished but will at some time in the future.
 - Key Concepts
 	- **Pending**: The initial state. The operation is ongoing, and its result isn't available yet.
 	- **Fulfilled**: The operation has completed successfully, and the promise now holds the resulting value.
 	- **Rejected**: The operation failed, and the promise holds the reason for failure (typically an error object).
 
-### Async/Await
+## Async/Await
 - Async/Await is a more current and syntactically clear approach to working with promises. Async/await was introduced in ES2017 (ES8) and allows asynchronous code to be expressed in a more synchronous, linear way, which improves readability and maintainability.
 - Key Concepts
 	- `async function`: Declares an asynchronous function that implicitly returns a promise. 
-	- **`await`**: Pauses the execution of an `async` function until a promise settles (fulfills or rejects). It allows you to retrieve the resolved value without chaining `.then()` calls.
+	- `await`: Pauses the execution of an `async` function until a promise settles (fulfills or rejects). It allows you to retrieve the resolved value without chaining `.then()` calls.
 
-### Proxy
-- **Property Lookup**: Custom behavior for property access.
-- **Assignment**: Intercepts property assignment.
-- **Function Invocation**: Controls function calls within a proxy object.
-
-### Callbacks
+## Callbacks
 - **Function Arguments**: JavaScript's standard built-in callback system often passes functions as parameters.
 - **Object Converters**:
     - **`valueOf`**: Converts an object to a primitive.
     - **`toString`**: Converts an object to a string representation.
 - **Property Getters and Setters**:
     - These trigger automatically when properties are accessed or modified, allowing for more controlled property behavior.
+- **Proxy**: Proxies are often referred to as "meta-programming" tools because they let you modify the behavior of language constructs.
+    - **Property Lookup**: Custom behavior for property access.
+    - **Assignment**: Intercepts property assignment.
+    - **Function Invocation**: Controls function calls within a proxy object.
+    - Structure:
+        - **Target Object**: The object being proxied. It can be any type of object (including arrays or functions).
+        - **Handler Object**: This object contains *traps* (intercepting methods) that define custom behavior for operations performed on the proxy.
+- **Object Overrides**
+	- Extending the default behavior of built-in objects such as Object, Array, Function, and User-defined objects.
+	- **Overriding Prototype Methods**: In JavaScript, you may override methods on the built-in object prototype chain.  
+	- **Overriding Constructors**: You may override object constructors to change how objects are formed.
+    - [List of symbols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
 
 ---
 # Sources
