@@ -85,7 +85,7 @@ Readmore :
 
 ---
 # JavaScript Primitives and Objects
-## **JavaScript Primitives**
+## JavaScript Primitives
 - **Symbol**
     - Unique and immutable, often used as object property keys to avoid property name collisions.
 - **String**
@@ -101,8 +101,8 @@ Readmore :
 - **Null**
     - Represents the intentional absence of any object value.
 
-## **JavaScript Native Objects**
-### **Prototype-based Object Model**
+## JavaScript Native Objects
+### Prototype-based Object Model
 - **Class**
     - JavaScript supports classes built on prototypes, allowing object-oriented design patterns like inheritance.
 - **Inheritance**
@@ -111,7 +111,7 @@ Readmore :
 - **`this` in Arrow Functions**
     - Arrow functions don't have their own `this` context, so they bind `this` lexically.
 
-### **Object Properties Access (Dot(`.`) and Bracket(`[]`) Notation)**
+### Object Properties Access
 - **Attributes**:
     - **value**: Holds the data.
     - **writeable**: Defines if the property can be modified.
@@ -120,7 +120,40 @@ Readmore :
 - **Computed Properties**:
     - **Setter/Getter**: Enable functions to be called when getting or setting property values, making them dynamic.
 
-## **Special JavaScript Objects**
+## Object Representation
+### Map
+- The **Map** in V8 represents an internal pointer to the object’s **HiddenClass**, which contains metadata describing the structure (or "shape") of the object. This shape provides a blueprint for the engine to understand where properties are stored, the object's prototype, and other relevant characteristics.
+- **HiddenClasses** work like a blueprint for object structure, allowing properties to be stored at **fixed offsets** in memory. This makes property access highly efficient because V8 can simply compute the offset instead of performing a costly lookup.
+- New hidden classes are only created when **named properties** are added or deleted. Adding an array-indexed property (e.g., `arr[0]`) does **not** trigger a new hidden class because arrays are handled differently in V8.
+- Contains
+	- **The type** of the object, whether it’s a regular object, array, or function.
+	- **The size** of the object in memory, critical for understanding memory allocation.
+	- **Type of Array Elements**: For arrays, the type of elements (e.g., integers, floats, or objects) is stored.
+	- The object’s **prototype**, which is part of the prototype chain lookup for inherited properties and methods.
+	- **Instance Descriptor**: Points to a **DescriptorArray** that holds information about the properties of the object.
+	- **Back_Pointer**: Helps V8 keep track of previous states when transitioning between hidden classes.
+
+### Properties 
+- A pointer to an object containing **named** properties.
+- **Fast Properties**: When the object has a small, fixed set of properties, V8 uses a **fast path** to store properties in a linear structure. Each property can be accessed with a fixed offset based on the object’s hidden class (map).
+- **Slow Properties**: When objects undergo significant changes, such as properties being added and removed frequently, V8 switches to a **slow properties path**, using a **dictionary** structure to manage properties.
+- Shape transitions only occur for **fast properties**. If an object moves to **slow properties**, it no longer shares its hidden class structure with other objects. Instead, it has a unique dictionary representation that allows for arbitrary property changes.
+
+### Element
+- Represent the **array-like properties** (numbered properties) of an object. JavaScript arrays and objects can have properties with numeric keys, and V8 handles these differently from named properties.
+- Arrays and objects can have numeric properties, which are stored in a dedicated **element store** in V8.
+- A pointer to an object containing **numbered** properties.
+- V8 makes a clear distinction between different types of elements allows the engine to optimize access patterns:
+	- **SMI_ELEMENTS**: Small integers.
+	- **DOUBLE_ELEMENTS**: Floating-point numbers.
+	- **ELEMENTS**: Generic objects
+- V8 optimizes operations on **packed arrays** (arrays without holes). Arrays with contiguous elements are much faster to access than those with missing values (**holey arrays**). Operations on packed arrays are more efficient because the engine can access elements sequentially in memory without checks.
+
+### In-Object Properties
+- Pointers to named properties that were defined at object initialization. They are stored directly in the object itself, rather than in an external property storage structure.
+- If an object’s structure changes (e.g., more properties are added than initially defined), V8 may need to store some properties in an **external property store** (e.g., the properties dictionary for slow properties).
+
+## Special JavaScript Objects
 - **Array**:
     - **Typed**: Typed arrays allow for working with raw binary data in buffers.
     - **Length**: Automatically updates as items are added or removed.
@@ -164,35 +197,35 @@ Type feedback is crucial for optimizations:
 - They demonstrate how the output of one operation is utilized as an input for another. 
 - These edges represent dependencies in which the result of a calculation or the value of an object is required as input for later actions. 
 
-##### Inputs to Functions/Comparisons/Operations
+##### *Inputs to Functions/Comparisons/Operations*
 - Value edges capture how values travel across distinct sections of code. For example, if a function call requires specific arguments or a comparison operation requires two operands, the inputs are connected together by value edges.
 
-##### Relaxed Execution Order
+##### *Relaxed Execution Order*
 - In many circumstances, the execution order of actions connected by value edges can be changed. This means that the optimizer can reorder the sequence in which values are computed to increase speed, as long as the relationships between values are preserved.
 
 #### Control Edges
 - Control edges define the program's control flow, indicating which activities are dependent on the execution of others. 
 - These edges guarantee that the execution sequence conforms to the program's logical structure, such as managing conditional branching, loops, and jumps in the control flow.
 
-##### Represents the Control Flow Graph
+##### *Represents the Control Flow Graph*
 - The control flow graph (CFG) represents all potential pathways through the program during execution. Control edges guarantee that the order of actions corresponds to the planned control flow.
 
-##### Solid Lines in Turbolizer
+##### *Solid Lines in Turbolizer*
 - The Turbolizer tool represents both control and value edges as solid lines, making it simple to see how the optimizer manages both data and control flow in a unified manner.
 
 #### Effect Edges
 - Effect Edges control dependencies between stateful actions, which are activities that have side effects or change the state of the application. They guarantee that side effects are executed in the right sequence, preventing assumptions about the program's state from being invalidated.
 
-##### Ordering of Stateful Operations
+##### *Ordering of Stateful Operations*
 - Effect edges ensure the right sequence of actions that change the program's state. For example, if one operation writes to a variable while another reads from it, the effect edge guarantees that the write comes first.
 
-##### Side Effects Impact Later Operations
+##### *Side Effects Impact Later Operations*
 - Certain activities, like as updating an object, writing to the console, or interacting with the DOM, might have side effects that influence subsequent operations. Effect edges handle these dependencies to ensure program correctness.
 
-##### Not Invalidating Assumptions
+##### *Not Invalidating Assumptions*
 - When the optimizer reorders stateful actions, the program's logic may fail if assumptions about the state are violated. Effect edges guarantee that such assumptions are upheld, preserving the right order of actions.
 
-##### Effect Chain
+##### *Effect Chain*
 - Even actions with minimal side effects may require wiring into the effect chain to preserve appropriate order. Certain mathematical operations, for example, might be re-ordered unless they are part of an effect chain that is triggered by earlier state changes.
 
 ### Readmore Ignition
@@ -334,7 +367,7 @@ Buffers are typically used to handle raw binary data, which is not natively supp
 
 ### DataView
 - Another way to manipulate ArrayBuffers, offering more flexibility than typed arrays.
-- Let you to access any area of the buffer using **a specific byte offset** and **value type**. This is important when dealing with complex binary formats in which data types may not be properly aligned.
+- Let you to access any area of the buffer using *a specific byte offset* and *value type*. This is important when dealing with complex binary formats in which data types may not be properly aligned.
 
 ---
 # Asynchronous
