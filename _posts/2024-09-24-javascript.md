@@ -83,10 +83,6 @@ Readmore :
 - [Jank Busters Part One](https://v8.dev/blog/jank-busters) 
 - [Jank Busters Part Two: Orinoco](https://v8.dev/blog/orinoco)
 
-#### GC Bugs
-- [Chrome in-the-wild bug analysis: CVE-2021-37975](https://github.blog/security/vulnerability-research/chrome-in-the-wild-bug-analysis-cve-2021-37975/)
-- [Triggering garbage collection with rejected promises to cause use-after-free in Chrome](https://securitylab.github.com/research/garbage-collection-uaf-chrome_gc/)
-
 ---
 # JavaScript Primitives and Objects
 ## **JavaScript Primitives**
@@ -238,8 +234,24 @@ Type feedback is crucial for optimizations:
 - Readmore: [bytecode-graph-builder.cc](https://source.chromium.org/chromium/v8/v8.git/+/main:src/compiler/bytecode-graph-builder.cc)
 
 ### Turbofan Optimize Graph
+- Almost all optimization takes place on the sea of nodes.
+	- Top-down and bottom-up graph transformations.
+	- Separates transformations from error-prone computations. 
+	- Local reasoning results in gradual transformations.
 
 ### Turbofan Optimization Pipeline
+- Speculations
+	- **Assumptions** are made about the object's type
+	- $Speculative.*
+		- Example : `SpeculativeNumberBitwiseAnd`
+- Reductions
+	- **Strategies** used during optimizations to reduce Nodes
+	- Nodes might be optimized away
+	- $Reduce.*
+		- Example : `ReduceWordNAnd`
+- Multiple Phases
+	- Optimizations pipeline contains different phases
+	- Example : Typer Phase, Type Lowering Phase, Effect Linearization Phase
 
 ### Readmore Turbofan
 - [An Introduction to Speculative Optimization in V8](https://benediktmeurer.de/2017/12/13/an-introduction-to-speculative-optimization-in-V8/)
