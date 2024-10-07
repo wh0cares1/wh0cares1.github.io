@@ -163,6 +163,42 @@ Type feedback is crucial for optimizations:
 - Addition of integers is very simple
 - Integer feedback allows to lower instruction to integer addition
 
+#### Value Edges
+- Value Edges shows the flow of values between operations in JavaScript code. 
+- They demonstrate how the output of one operation is utilized as an input for another. 
+- These edges represent dependencies in which the result of a calculation or the value of an object is required as input for later actions. 
+
+##### Inputs to Functions/Comparisons/Operations
+- Value edges capture how values travel across distinct sections of code. For example, if a function call requires specific arguments or a comparison operation requires two operands, the inputs are connected together by value edges.
+
+##### Relaxed Execution Order
+- In many circumstances, the execution order of actions connected by value edges can be changed. This means that the optimizer can reorder the sequence in which values are computed to increase speed, as long as the relationships between values are preserved.
+
+#### Control Edges
+- Control edges define the program's control flow, indicating which activities are dependent on the execution of others. 
+- These edges guarantee that the execution sequence conforms to the program's logical structure, such as managing conditional branching, loops, and jumps in the control flow.
+
+##### Represents the Control Flow Graph
+- The control flow graph (CFG) represents all potential pathways through the program during execution. Control edges guarantee that the order of actions corresponds to the planned control flow.
+
+##### Solid Lines in Turbolizer
+- The Turbolizer tool represents both control and value edges as solid lines, making it simple to see how the optimizer manages both data and control flow in a unified manner.
+
+#### Effect Edges
+- Effect Edges control dependencies between stateful actions, which are activities that have side effects or change the state of the application. They guarantee that side effects are executed in the right sequence, preventing assumptions about the program's state from being invalidated.
+
+##### Ordering of Stateful Operations
+- Effect edges ensure the right sequence of actions that change the program's state. For example, if one operation writes to a variable while another reads from it, the effect edge guarantees that the write comes first.
+
+##### Side Effects Impact Later Operations
+- Certain activities, like as updating an object, writing to the console, or interacting with the DOM, might have side effects that influence subsequent operations. Effect edges handle these dependencies to ensure program correctness.
+
+##### Not Invalidating Assumptions
+- When the optimizer reorders stateful actions, the program's logic may fail if assumptions about the state are violated. Effect edges guarantee that such assumptions are upheld, preserving the right order of actions.
+
+##### Effect Chain
+- Even actions with minimal side effects may require wiring into the effect chain to preserve appropriate order. Certain mathematical operations, for example, might be re-ordered unless they are part of an effect chain that is triggered by earlier state changes.
+
 ### Readmore Ignition
 - [Firing up the Ignition interpreter](https://v8.dev/blog/ignition-interpreter)
 - [Ignition: Jump-starting an Interpreter for V8](https://docs.google.com/presentation/d/1HgDDXBYqCJNasBKBDf9szap1j4q4wnSHhOYpaNy5mHU/edit#slide=id.g1357e6d1a4_0_58)
@@ -198,7 +234,12 @@ Type feedback is crucial for optimizations:
 - Turbofan is an optimizing compiler that use interpreter feedback to do "speculative" optimizations.
 - The compiler works ahead of time by utilizing a "Profiler" to monitor and watch code that needs to be optimized. If there is a "hot function," the compiler converts it into efficient machine code for execution. Otherwise, if it detects that a previously optimized "hot function" is no longer being utilized, it will "deoptimize" it and return it to bytecode.
 
-### Pipelining
+### Turbofan Graph Building
+- Readmore: [bytecode-graph-builder.cc](https://source.chromium.org/chromium/v8/v8.git/+/main:src/compiler/bytecode-graph-builder.cc)
+
+### Turbofan Optimize Graph
+
+### Turbofan Optimization Pipeline
 
 ### Readmore Turbofan
 - [An Introduction to Speculative Optimization in V8](https://benediktmeurer.de/2017/12/13/an-introduction-to-speculative-optimization-in-V8/)
