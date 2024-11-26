@@ -60,7 +60,7 @@ V8's heap is divided into multiple spaces.
 
 New space:
 - Most new objects end up here.
-- Memory given out **linearly**.
+- Memory given out *linearly*.
 - Divided into two regions.
 
 Old space:
@@ -73,8 +73,8 @@ The memory heap is the location where objects and data are dynamically allocated
 The garbage collector also runs every time a JavaScript file is executed, so it has probably been run more than any other component in v8. On top of that, it introduces a great deal of uncertainty in the heap layout. Every time the garbage collector runs, it moves objects around and changes the heap layout completely, and it’s difficult to predict when it is going to run. There’s also [concurrent garbage collection](https://v8.dev/blog/concurrent-marking), which adds even more uncertainty to the mix.
 
 V8 Heap is split into different regions called generations garbage collection :
-- Young generation using semi-spaces and **Copying Collection** with parallel Scavenger (marks, copies and updates pointers at the same time)
-- Old generation using **[Mark-Sweep](https://wingolog.org/archives/2023/12/08/v8s-mark-sweep-nursery)/Mark-Sweep-Compact** with incremental marking (tri-color marking and write barriers)
+- Young generation using semi-spaces and *Copying Collection* with parallel Scavenger (marks, copies and updates pointers at the same time)
+- Old generation using *[Mark-Sweep](https://wingolog.org/archives/2023/12/08/v8s-mark-sweep-nursery)/Mark-Sweep-Compact* with incremental marking (tri-color marking and write barriers)
 
 Readmore about GC:
 - [Garbage Collection: V8’s Orinoco](https://medium.com/@nikolay.veretelnik/garbage-collection-v8s-orinoco-452b70761f0c)
@@ -111,27 +111,27 @@ Readmore about GC:
 
 ## JavaScript Native Objects
 **Prototype-based Object Model**
-- **Class**
+- Class
     - JavaScript supports classes built on prototypes, allowing object-oriented design patterns like inheritance.
-- **Inheritance**
-    - **`this.__proto__`**: Points to the object's prototype, showing inheritance.
-    - **`super`**: Calls functions on an object's parent.
-- **`this` in Arrow Functions**
+- Inheritance
+    - `this.__proto__`: Points to the object's prototype, showing inheritance.
+    - `super`: Calls functions on an object's parent.
+- `this` in Arrow Functions
     - Arrow functions don't have their own `this` context, so they bind `this` lexically.
 
 **Object Properties Access**
-- **Attributes**:
-    - **value**: Holds the data.
-    - **writeable**: Defines if the property can be modified.
-    - **enumerable**: Determines if the property shows up during iteration, like `Object.keys()` or the `in` operator.
-    - **configurable**: Controls if the property can be deleted or changed, such as defining a setter or getter.
-- **Computed Properties**:
-    - **Setter/Getter**: Enable functions to be called when getting or setting property values, making them dynamic.
+- *Attributes*:
+    - *value*: Holds the data.
+    - *writeable*: Defines if the property can be modified.
+    - *enumerable*: Determines if the property shows up during iteration, like `Object.keys()` or the `in` operator.
+    - *configurable*: Controls if the property can be deleted or changed, such as defining a setter or getter.
+- *Computed Properties*:
+    - *Setter/Getter*: Enable functions to be called when getting or setting property values, making them dynamic.
 
 ## Object Representation
 **Map**
-- The **Map** in V8 represents an internal pointer to the object’s **HiddenClass**, which contains metadata describing the structure (or "shape") of the object. This shape provides a blueprint for the engine to understand where properties are stored, the object's prototype, and other relevant characteristics.
-- **HiddenClasses** work like a blueprint for object structure, allowing properties to be stored at **fixed offsets** in memory. This makes property access highly efficient because V8 can simply compute the offset instead of performing a costly lookup.
+- The *Map* in V8 represents an internal pointer to the object’s *HiddenClass*, which contains metadata describing the structure (or "shape") of the object. This shape provides a blueprint for the engine to understand where properties are stored, the object's prototype, and other relevant characteristics.
+- *HiddenClasses* work like a blueprint for object structure, allowing properties to be stored at **fixed offsets** in memory. This makes property access highly efficient because V8 can simply compute the offset instead of performing a costly lookup.
 - New hidden classes are only created when **named properties** are added or deleted. Adding an array-indexed property (e.g., `arr[0]`) does **not** trigger a new hidden class because arrays are handled differently in V8.
 - Contains
 	- *The type* of the object, whether it’s a regular object, array, or function.
@@ -143,33 +143,36 @@ Readmore about GC:
 
 **Properties** 
 - A pointer to an object containing *named* properties.
-- **Fast Properties**: When the object has a small, fixed set of properties, V8 uses a **fast path** to store properties in a linear structure. Each property can be accessed with a fixed offset based on the object’s hidden class (map).
-- **Slow Properties**: When objects undergo significant changes, such as properties being added and removed frequently, V8 switches to a **slow properties path**, using a **dictionary** structure to manage properties.
-- Shape transitions only occur for **fast properties**. If an object moves to **slow properties**, it no longer shares its hidden class structure with other objects. Instead, it has a unique dictionary representation that allows for arbitrary property changes.
+- *Fast Properties*: When the object has a small, fixed set of properties, V8 uses a *fast path* to store properties in a linear structure. Each property can be accessed with a fixed offset based on the object’s hidden class (map).
+- *Slow Properties*: When objects undergo significant changes, such as properties being added and removed frequently, V8 switches to a *slow properties path*, using a *dictionary* structure to manage properties.
+- Shape transitions only occur for *fast properties*. If an object moves to *slow properties*, it no longer shares its hidden class structure with other objects. Instead, it has a unique dictionary representation that allows for arbitrary property changes.
 
 **Element**
-- Represent the **array-like properties** (numbered properties) of an object. JavaScript arrays and objects can have properties with numeric keys, and V8 handles these differently from named properties.
-- Arrays and objects can have numeric properties, which are stored in a dedicated **element store** in V8.
-- A pointer to an object containing **numbered** properties.
+- Represent the *array-like properties* (numbered properties) of an object. JavaScript arrays and objects can have properties with numeric keys, and V8 handles these differently from named properties.
+- Arrays and objects can have numeric properties, which are stored in a dedicated *element store* in V8.
+- A pointer to an object containing *numbered* properties.
 - V8 makes a clear distinction between different types of elements allows the engine to optimize access patterns:
-	- **SMI_ELEMENTS**: Small integers.
-	- **DOUBLE_ELEMENTS**: Floating-point numbers.
-	- **ELEMENTS**: Generic objects
-- V8 optimizes operations on **packed arrays** (arrays without holes). Arrays with contiguous elements are much faster to access than those with missing values (**holey arrays**). Operations on packed arrays are more efficient because the engine can access elements sequentially in memory without checks.
+	- *SMI_ELEMENTS*: Small integers.
+	- *DOUBLE_ELEMENTS*: Floating-point numbers.
+	- *ELEMENTS*: Generic objects
+- V8 optimizes operations on *packed arrays* (arrays without holes). Arrays with contiguous elements are much faster to access than those with missing values (*holey arrays*). Operations on packed arrays are more efficient because the engine can access elements sequentially in memory without checks.
 
 **In-Object Properties**
 - Pointers to named properties that were defined at object initialization. They are stored directly in the object itself, rather than in an external property storage structure.
-- If an object’s structure changes (e.g., more properties are added than initially defined), V8 may need to store some properties in an **external property store** (e.g., the properties dictionary for slow properties).
+- If an object’s structure changes (e.g., more properties are added than initially defined), V8 may need to store some properties in an *external property store* (e.g., the properties dictionary for slow properties).
 
 ## Special JavaScript Objects
-**Array**:
+**Array**
 - *Typed*: Typed arrays allow for working with raw binary data in buffers.
 - *Length*: Automatically updates as items are added or removed.
-**RegExp**:
+
+**RegExp**
 - Regular expressions for pattern matching within strings.
-**ArrayBuffer**:
+
+**ArrayBuffer**
 - A low-level binary data buffer, essential for handling binary data, often used with typed arrays.
-**Function**:
+
+**Function**
 - *Passed as object*: Functions are first-class objects and can be passed around like other objects.
 - *Hoisted*: Function declarations are hoisted, allowing them to be called before their definition.
 - *Arrow Function*:
@@ -182,10 +185,10 @@ Readmore about GC:
 
 ---
 # JavaScript Engines: V8 Internals
-- JavaScript uses “[prototype-based-inheritance](https://262.ecma-international.org/6.0/#sec-objects)”, where each object has a reference to a prototype object or “shape” whose properties it incorporates.
+JavaScript uses “[prototype-based-inheritance](https://262.ecma-international.org/6.0/#sec-objects)”, where each object has a reference to a prototype object or “shape” whose properties it incorporates.
 
 ## Ignition (V8’s Interpreter)
-- When JavaScript is first loaded, it is translated to bytecode and executed by Ignition, V8's interpreter. Ignition is quick to load code, but slow to execute it repeatedly since interpreting bytecode is less efficient than running compiled machine code.
+When JavaScript is first loaded, it is translated to bytecode and executed by Ignition, V8's interpreter. Ignition is quick to load code, but slow to execute it repeatedly since interpreting bytecode is less efficient than running compiled machine code.
 
 ### Ignition Bytecode
 - Ignition is a register machine
@@ -201,9 +204,8 @@ Type feedback is crucial for optimizations:
 - Integer feedback allows to lower instruction to integer addition
 
 **Value Edges**
-- Value Edges shows the flow of values between operations in JavaScript code. 
-- They demonstrate how the output of one operation is utilized as an input for another. 
-- These edges represent dependencies in which the result of a calculation or the value of an object is required as input for later actions. 
+
+Value Edges shows the flow of values between operations in JavaScript code. They demonstrate how the output of one operation is utilized as an input for another. These edges represent dependencies in which the result of a calculation or the value of an object is required as input for later actions. 
 
 *Inputs to Functions/Comparisons/Operations*
 - Value edges capture how values travel across distinct sections of code. For example, if a function call requires specific arguments or a comparison operation requires two operands, the inputs are connected together by value edges.
@@ -212,8 +214,8 @@ Type feedback is crucial for optimizations:
 - In many circumstances, the execution order of actions connected by value edges can be changed. This means that the optimizer can reorder the sequence in which values are computed to increase speed, as long as the relationships between values are preserved.
 
 **Control Edges**
-- Control edges define the program's control flow, indicating which activities are dependent on the execution of others. 
-- These edges guarantee that the execution sequence conforms to the program's logical structure, such as managing conditional branching, loops, and jumps in the control flow.
+
+Control edges define the program's control flow, indicating which activities are dependent on the execution of others. These edges guarantee that the execution sequence conforms to the program's logical structure, such as managing conditional branching, loops, and jumps in the control flow.
 
 *Represents the Control Flow Graph*
 - The control flow graph (CFG) represents all potential pathways through the program during execution. Control edges guarantee that the order of actions corresponds to the planned control flow.
@@ -222,7 +224,8 @@ Type feedback is crucial for optimizations:
 - The Turbolizer tool represents both control and value edges as solid lines, making it simple to see how the optimizer manages both data and control flow in a unified manner.
 
 **Effect Edges**
-- Effect Edges control dependencies between stateful actions, which are activities that have side effects or change the state of the application. They guarantee that side effects are executed in the right sequence, preventing assumptions about the program's state from being invalidated.
+
+Effect Edges control dependencies between stateful actions, which are activities that have side effects or change the state of the application. They guarantee that side effects are executed in the right sequence, preventing assumptions about the program's state from being invalidated.
 
 *Ordering of Stateful Operations*
 - Effect edges ensure the right sequence of actions that change the program's state. For example, if one operation writes to a variable while another reads from it, the effect edge guarantees that the write comes first.
@@ -281,6 +284,7 @@ Type feedback is crucial for optimizations:
 	- Local reasoning results in gradual transformations.
 
 **Turbofan Optimization Pipeline**
+
 Speculations
 - *Assumptions* are made about the object's type
 - `$Speculative.*`
