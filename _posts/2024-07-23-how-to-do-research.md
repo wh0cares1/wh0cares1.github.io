@@ -163,7 +163,7 @@ These skills encourage deeper understanding beyond memorization:
 	- *Day 1*: First recall session.
 	- *Day 3*: Revisit content briefly.
 	- *Day 7*: Focus on weak points.
-	- *Day 30: Comprehensive review.
+	- *Day 30*: Comprehensive review.
 - Teach to others (Feynman technique); you can write blog posts and share it with the community.
 
 ---
@@ -171,6 +171,98 @@ These skills encourage deeper understanding beyond memorization:
 - This part is about using emotional intelligence to reflect on whether you are close to your goals or not.
 - If you are not close to your goal, then you should answer, "**What is the problem?**", "**Why does it happen to you?**" and "**How can you overcome it?**"
 - You should reflect every day, every week, every month, and every year.
+
+---
+# Workflow
+**1. Define What You Want to Learn**
+
+Be specific
+- Instead of "learn programming," try "understand JavaScript async internals."
+
+Write down what success looks like
+- Example: "By the end of this, I should know how Promises work and can debug async issues."
+
+**2. Search for Available Resources**
+
+Check for Online Courses
+- Look for online platforms like Coursera, Udemy, or university websites.
+- Download or note the syllabus.
+- Extract **keywords** (chapter titles, module names).
+
+No Course Available?
+- Use search engines, books, and tools like LLMs (ChatGPT) to gather information.
+- Skim blogs, whitepapers, or documentation.
+- Collect keywords, even if you’re unsure about their relevance (you’ll adjust later).
+
+**3. Keyword Management**
+
+Gather Keywords
+- Skim materials and highlight recurring themes, headings, and emphasized terms.
+- Limit initial keywords to 50 to avoid overwhelm.
+
+Organize Keywords
+- Group similar terms.
+- Example: For JavaScript, group "async," "Promises," "event loop," and "microtasks" together.
+
+Refine Later
+- Eliminate or reorganize irrelevant keywords after deeper research.
+
+**4. Create the Mind Map**
+
+Logic Layer (Backbone)
+- Chunk keywords into broad topics that represent the **big picture**.
+- Example: "Async JavaScript" → Promises, Async/Await, Event Loop, Callback Hell.
+
+Concept Layer
+- Compare each keyword:
+    - **How do they connect?**
+    - **Why are they important?**
+- Example: "Event Loop handles Promises in the microtask queue."
+
+Tool
+- Use Freeform (iPad).
+- Start messy; refine over time.
+
+**5. Add Details**
+
+Skimming
+- First pass: Skim your sources to locate where detailed information resides.
+- Focus on high-level understanding.
+
+Thorough Reading
+- Add specific facts, examples, and nuances to the mind map.
+- Color-code:
+       - **Red** for critical details.
+       - **Blue** for supporting concepts.
+
+**6. Use Zettelkasten for Details**
+
+Create Notes
+- Write concise summaries of specific details in Obsidian or another note app.
+- Example:
+    - Title: "Event Loop (JavaScript)"
+    - Body: "Manages execution queues. Microtasks (e.g., Promises) are prioritized over macrotasks."
+
+Link Notes
+- Categorize notes to match the mind map structure.
+- Add links for related concepts.
+    - Example: `[[Event Loop]]` → `[[Promises]]`.
+
+**7. Revision**
+
+Interleaving
+- Study concepts from multiple angles and contexts.
+- Example: Review "Promises" alongside "Error Handling."
+
+Zoom Out
+- Regularly review the entire mind map to identify gaps.
+- Ask:
+    - **What’s missing?**
+    - **Does this make sense as a whole?**
+
+Spaced Retrieval
+- Recall the material at increasing intervals:
+    - Same day, 3 days later, 7 days later, 1 month later.
 
 ---
 # References
