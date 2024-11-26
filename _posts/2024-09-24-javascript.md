@@ -23,22 +23,22 @@ For example, an interpreter within the browser reads and executes JavaScript wit
     - The event loop checks whether the call stack is empty. If it is, the next job from the callback queue is moved to the call stack and executed.
     - If any microtasks are available, they are executed before the next callback in the queue.
 
-### Call Stack
+**Call Stack**
 - JavaScript is a single threaded programming language, which means it has a single Call Stack. Therefore, it can do one thing at a time.
 - The Call Stack is a data structure that tracks where we are in the program. 
 - If we enter a function, we move it to the top of the stack. When we return from a function, we pop off the top of the stack. That is all the stack can do. Each element in the Call Stack is called a **Stack Frame**. 
 - Running code on a single thread can be simple since you don't have to deal with the complex problems that arise in multi-threaded settings, such as deadlocks.
 
-### Web APIs
+**Web APIs**
 - JavaScript in the browser has access to a variety of Web APIs, including setTimeout(), XMLHttpRequest, and DOM event listeners. These APIs enable JavaScript to offload operations that might otherwise stall the main thread, such as making network queries or waiting for a timeout.
 
-### Callback Queue (Task Queue)
+**Callback Queue (Task Queue)**
 - When an asynchronous job (such as an API response or a timeout) is ready to be handled, the related callback is added to the Callback Queue.
 
-### Microtasks
+**Microtasks**
 - These are tasks that have a greater priority than other tasks in the queue. Callbacks for MutationObserver and Promises are two examples. Microtasks are completed before the next task in the callback queue.
 
-### Readmore about Event Loop
+**Readmore about Event Loop**
 - [Jake Archibald - In The Loop](https://www.youtube.com/watch?v=cCOL7MC4Pl0)
 - [Philip Roberts: What is an event loop?](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
 - [The Node.js Event Loop](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick#the-nodejs-event-loop)
@@ -46,7 +46,8 @@ For example, an interpreter within the browser reads and executes JavaScript wit
 - [Further Adventures of the Event Loop - Erin Zimmer](https://www.youtube.com/watch?v=u1kqx6AenYw)
 
 ## Memory Management
-### Memory Layout
+**Memory Layout**
+
 V8's heap is divided into multiple spaces.
 - Read-only space
 - New space
@@ -66,14 +67,16 @@ Old space:
 - Objects that survived two GC runs.
 - Less likely to be moved around.
 
-### Garbage Collection
+**Garbage Collection**
+
 The memory heap is the location where objects and data are dynamically allocated during execution. Garbage collection techniques are used in JavaScript engines to discover and reclaim memory used by no longer required objects. 
 The garbage collector also runs every time a JavaScript file is executed, so it has probably been run more than any other component in v8. On top of that, it introduces a great deal of uncertainty in the heap layout. Every time the garbage collector runs, it moves objects around and changes the heap layout completely, and it’s difficult to predict when it is going to run. There’s also [concurrent garbage collection](https://v8.dev/blog/concurrent-marking), which adds even more uncertainty to the mix.
-V8 Heap is split into different regions called generations garbage collection 
+
+V8 Heap is split into different regions called generations garbage collection :
 - Young generation using semi-spaces and **Copying Collection** with parallel Scavenger (marks, copies and updates pointers at the same time)
 - Old generation using **[Mark-Sweep](https://wingolog.org/archives/2023/12/08/v8s-mark-sweep-nursery)/Mark-Sweep-Compact** with incremental marking (tri-color marking and write barriers)
 
-Readmore :
+Readmore about GC:
 - [Garbage Collection: V8’s Orinoco](https://medium.com/@nikolay.veretelnik/garbage-collection-v8s-orinoco-452b70761f0c)
 - [Trash talk: the Orinoco garbage collector](https://v8.dev/blog/trash-talk)
 - [High-Performance Garbage Collection For C++](https://v8.dev/blog/high-performance-cpp-gc)
@@ -86,23 +89,28 @@ Readmore :
 ---
 # JavaScript Primitives and Objects
 ## JavaScript Primitives
-- **Symbol**
-    - Unique and immutable, often used as object property keys to avoid property name collisions.
-- **String**
-    - A sequence of characters used to represent and manipulate text.
-- **Boolean**
-    - Represents logical true/false values, crucial for control flow.
-- **Number**
-    - **Int**: Integer values.
-    - **BigInt**: For working with arbitrarily large integers beyond the safe limit of `Number`.
-    - **Double**: Represents floating-point numbers, which are more common in JavaScript.
-- **Undefined**
-    - A variable that has been declared but not yet assigned a value.
-- **Null**
-    - Represents the intentional absence of any object value.
+**Symbol**
+- Unique and immutable, often used as object property keys to avoid property name collisions.
+
+**String**
+- A sequence of characters used to represent and manipulate text.
+
+**Boolean**
+- Represents logical true/false values, crucial for control flow.
+
+**Number**
+- **Int**: Integer values.
+- **BigInt**: For working with arbitrarily large integers beyond the safe limit of `Number`.
+- **Double**: Represents floating-point numbers, which are more common in JavaScript.
+
+**Undefined**
+- A variable that has been declared but not yet assigned a value.
+
+**Null**
+- Represents the intentional absence of any object value.
 
 ## JavaScript Native Objects
-### Prototype-based Object Model
+**Prototype-based Object Model**
 - **Class**
     - JavaScript supports classes built on prototypes, allowing object-oriented design patterns like inheritance.
 - **Inheritance**
@@ -111,7 +119,7 @@ Readmore :
 - **`this` in Arrow Functions**
     - Arrow functions don't have their own `this` context, so they bind `this` lexically.
 
-### Object Properties Access
+**Object Properties Access**
 - **Attributes**:
     - **value**: Holds the data.
     - **writeable**: Defines if the property can be modified.
@@ -121,25 +129,25 @@ Readmore :
     - **Setter/Getter**: Enable functions to be called when getting or setting property values, making them dynamic.
 
 ## Object Representation
-### Map
+**Map**
 - The **Map** in V8 represents an internal pointer to the object’s **HiddenClass**, which contains metadata describing the structure (or "shape") of the object. This shape provides a blueprint for the engine to understand where properties are stored, the object's prototype, and other relevant characteristics.
 - **HiddenClasses** work like a blueprint for object structure, allowing properties to be stored at **fixed offsets** in memory. This makes property access highly efficient because V8 can simply compute the offset instead of performing a costly lookup.
 - New hidden classes are only created when **named properties** are added or deleted. Adding an array-indexed property (e.g., `arr[0]`) does **not** trigger a new hidden class because arrays are handled differently in V8.
 - Contains
-	- **The type** of the object, whether it’s a regular object, array, or function.
-	- **The size** of the object in memory, critical for understanding memory allocation.
-	- **Type of Array Elements**: For arrays, the type of elements (e.g., integers, floats, or objects) is stored.
-	- The object’s **prototype**, which is part of the prototype chain lookup for inherited properties and methods.
-	- **Instance Descriptor**: Points to a **DescriptorArray** that holds information about the properties of the object.
-	- **Back_Pointer**: Helps V8 keep track of previous states when transitioning between hidden classes.
+	- *The type* of the object, whether it’s a regular object, array, or function.
+	- *The size* of the object in memory, critical for understanding memory allocation.
+	- *Type of Array Elements*: For arrays, the type of elements (e.g., integers, floats, or objects) is stored.
+	- The object’s *prototype*, which is part of the prototype chain lookup for inherited properties and methods.
+	- *Instance Descriptor*: Points to a *DescriptorArray* that holds information about the properties of the object.
+	- *Back_Pointer*: Helps V8 keep track of previous states when transitioning between hidden classes.
 
-### Properties 
-- A pointer to an object containing **named** properties.
+**Properties** 
+- A pointer to an object containing *named* properties.
 - **Fast Properties**: When the object has a small, fixed set of properties, V8 uses a **fast path** to store properties in a linear structure. Each property can be accessed with a fixed offset based on the object’s hidden class (map).
 - **Slow Properties**: When objects undergo significant changes, such as properties being added and removed frequently, V8 switches to a **slow properties path**, using a **dictionary** structure to manage properties.
 - Shape transitions only occur for **fast properties**. If an object moves to **slow properties**, it no longer shares its hidden class structure with other objects. Instead, it has a unique dictionary representation that allows for arbitrary property changes.
 
-### Element
+**Element**
 - Represent the **array-like properties** (numbered properties) of an object. JavaScript arrays and objects can have properties with numeric keys, and V8 handles these differently from named properties.
 - Arrays and objects can have numeric properties, which are stored in a dedicated **element store** in V8.
 - A pointer to an object containing **numbered** properties.
@@ -149,28 +157,28 @@ Readmore :
 	- **ELEMENTS**: Generic objects
 - V8 optimizes operations on **packed arrays** (arrays without holes). Arrays with contiguous elements are much faster to access than those with missing values (**holey arrays**). Operations on packed arrays are more efficient because the engine can access elements sequentially in memory without checks.
 
-### In-Object Properties
+**In-Object Properties**
 - Pointers to named properties that were defined at object initialization. They are stored directly in the object itself, rather than in an external property storage structure.
 - If an object’s structure changes (e.g., more properties are added than initially defined), V8 may need to store some properties in an **external property store** (e.g., the properties dictionary for slow properties).
 
 ## Special JavaScript Objects
-- **Array**:
-    - **Typed**: Typed arrays allow for working with raw binary data in buffers.
-    - **Length**: Automatically updates as items are added or removed.
-- **RegExp**:
-    - Regular expressions for pattern matching within strings.
-- **ArrayBuffer**:
-    - A low-level binary data buffer, essential for handling binary data, often used with typed arrays.
-- **Function**:
-    - **Passed as object**: Functions are first-class objects and can be passed around like other objects.
-    - **Hoisted**: Function declarations are hoisted, allowing them to be called before their definition.
-    - **Arrow Function**:
-        - **Compact**: Shorter syntax for anonymous functions.
-    - **Constructor**: Functions can also serve as constructors to create new objects.
-    - **Store as Variable**: Functions can be assigned to variables, passed as arguments, or returned from other functions.
-    - **Variable**:
-        - **Weakly Typed**: JavaScript variables don’t require a specific type.
-        - **Coerced**: Variables are often coerced into different types implicitly.
+**Array**:
+- *Typed*: Typed arrays allow for working with raw binary data in buffers.
+- *Length*: Automatically updates as items are added or removed.
+**RegExp**:
+- Regular expressions for pattern matching within strings.
+**ArrayBuffer**:
+- A low-level binary data buffer, essential for handling binary data, often used with typed arrays.
+**Function**:
+- *Passed as object*: Functions are first-class objects and can be passed around like other objects.
+- *Hoisted*: Function declarations are hoisted, allowing them to be called before their definition.
+- *Arrow Function*:
+    - Compact: Shorter syntax for anonymous functions.
+- *Constructor*: Functions can also serve as constructors to create new objects.
+- *Store as Variable*: Functions can be assigned to variables, passed as arguments, or returned from other functions.
+- *Variable*:
+    - Weakly Typed: JavaScript variables don’t require a specific type.
+    - Coerced: Variables are often coerced into different types implicitly.
 
 ---
 # JavaScript Engines: V8 Internals
@@ -192,40 +200,40 @@ Type feedback is crucial for optimizations:
 - Addition of integers is very simple
 - Integer feedback allows to lower instruction to integer addition
 
-#### Value Edges
+**Value Edges**
 - Value Edges shows the flow of values between operations in JavaScript code. 
 - They demonstrate how the output of one operation is utilized as an input for another. 
 - These edges represent dependencies in which the result of a calculation or the value of an object is required as input for later actions. 
 
-##### *Inputs to Functions/Comparisons/Operations*
+*Inputs to Functions/Comparisons/Operations*
 - Value edges capture how values travel across distinct sections of code. For example, if a function call requires specific arguments or a comparison operation requires two operands, the inputs are connected together by value edges.
 
-##### *Relaxed Execution Order*
+*Relaxed Execution Order*
 - In many circumstances, the execution order of actions connected by value edges can be changed. This means that the optimizer can reorder the sequence in which values are computed to increase speed, as long as the relationships between values are preserved.
 
-#### Control Edges
+**Control Edges**
 - Control edges define the program's control flow, indicating which activities are dependent on the execution of others. 
 - These edges guarantee that the execution sequence conforms to the program's logical structure, such as managing conditional branching, loops, and jumps in the control flow.
 
-##### *Represents the Control Flow Graph*
+*Represents the Control Flow Graph*
 - The control flow graph (CFG) represents all potential pathways through the program during execution. Control edges guarantee that the order of actions corresponds to the planned control flow.
 
-##### *Solid Lines in Turbolizer*
+*Solid Lines in Turbolizer*
 - The Turbolizer tool represents both control and value edges as solid lines, making it simple to see how the optimizer manages both data and control flow in a unified manner.
 
-#### Effect Edges
+**Effect Edges**
 - Effect Edges control dependencies between stateful actions, which are activities that have side effects or change the state of the application. They guarantee that side effects are executed in the right sequence, preventing assumptions about the program's state from being invalidated.
 
-##### *Ordering of Stateful Operations*
+*Ordering of Stateful Operations*
 - Effect edges ensure the right sequence of actions that change the program's state. For example, if one operation writes to a variable while another reads from it, the effect edge guarantees that the write comes first.
 
-##### *Side Effects Impact Later Operations*
+*Side Effects Impact Later Operations*
 - Certain activities, like as updating an object, writing to the console, or interacting with the DOM, might have side effects that influence subsequent operations. Effect edges handle these dependencies to ensure program correctness.
 
-##### *Not Invalidating Assumptions*
+*Not Invalidating Assumptions*
 - When the optimizer reorders stateful actions, the program's logic may fail if assumptions about the state are violated. Effect edges guarantee that such assumptions are upheld, preserving the right order of actions.
 
-##### *Effect Chain*
+*Effect Chain*
 - Even actions with minimal side effects may require wiring into the effect chain to preserve appropriate order. Certain mathematical operations, for example, might be re-ordered unless they are part of an effect chain that is triggered by earlier state changes.
 
 ### Readmore Ignition
@@ -241,7 +249,7 @@ Type feedback is crucial for optimizations:
 ## Sparkplug (V8’s non optimizing compiler)
 - Sparkplug converts the bytecode directly to machine code without doing extensive optimization. Its goal is to create machine code faster than the optimizing compiler (Turbofan), allowing execution to proceed more quickly, particularly for smaller or short-lived routines that may not benefit from severe optimization.
 
-### Readmore Sparkplug
+**Readmore Sparkplug**
 - [Sparkplug — a non-optimizing JavaScript compiler](https://v8.dev/blog/sparkplug)
 - [Sparkplug](https://docs.google.com/document/d/13c-xXmFOMcpUQNqo66XWQt3u46TsBjXrHrh4c045l-A/edit)
 - [Sparkplug, the new lightning-fast V8 baseline JavaScript compiler](https://medium.com/@yanguly/sparkplug-v8-baseline-javascript-compiler-758a7bc96e84)
@@ -251,7 +259,7 @@ Type feedback is crucial for optimizations:
 - Maglev converts bytecodes into SSA (Static Single-Assignment) nodes, which are defined in the file [maglev-ir.h](https://source.chromium.org/chromium/chromium/src/+/376123191e0361a8639c1783abcf2490a506c748:v8/src/maglev/maglev-ir.h).
 - Maglev's compilation process consists of two optimization phases: [building a graph](https://source.chromium.org/chromium/chromium/src/+/376123191e0361a8639c1783abcf2490a506c748:v8/src/maglev/maglev-compiler.cc;l=403) from SSA nodes and [optimizing Phi value](https://source.chromium.org/chromium/chromium/src/+/376123191e0361a8639c1783abcf2490a506c748:v8/src/maglev/maglev-compiler.cc;l=421) representations.
 
-### Readmore Maglev
+**Readmore Maglev**
 - [Maglev - V8’s Fastest Optimizing JIT](https://v8.dev/blog/maglev)
 - [Maglev Doc](https://docs.google.com/document/d/13CwgSL4yawxuYg3iNlM-4ZPCB8RgJya6b8H_E2F-Aek/edit#heading=h.djws22xta9wz)
 - [Maglev Compiler](https://chromium.googlesource.com/v8/v8/+/f73f3b3b5122b806d898c8799da2c104d6bc2c56/src/maglev/maglev-compiler.cc)
@@ -263,30 +271,32 @@ Type feedback is crucial for optimizations:
 - Turbofan is an optimizing compiler that use interpreter feedback to do "speculative" optimizations.
 - The compiler works ahead of time by utilizing a "Profiler" to monitor and watch code that needs to be optimized. If there is a "hot function," the compiler converts it into efficient machine code for execution. Otherwise, if it detects that a previously optimized "hot function" is no longer being utilized, it will "deoptimize" it and return it to bytecode.
 
-### Turbofan Graph Building
+**Turbofan Graph Building**
 - Readmore: [bytecode-graph-builder.cc](https://source.chromium.org/chromium/v8/v8.git/+/main:src/compiler/bytecode-graph-builder.cc)
 
-### Turbofan Optimize Graph
+**Turbofan Optimize Graph**
 - Almost all optimization takes place on the sea of nodes.
 	- Top-down and bottom-up graph transformations.
 	- Separates transformations from error-prone computations. 
 	- Local reasoning results in gradual transformations.
 
-### Turbofan Optimization Pipeline
-- Speculations
-	- **Assumptions** are made about the object's type
-	- $Speculative.*
-		- Example : `SpeculativeNumberBitwiseAnd`
-- Reductions
-	- **Strategies** used during optimizations to reduce Nodes
-	- Nodes might be optimized away
-	- $Reduce.*
-		- Example : `ReduceWordNAnd`
-- Multiple Phases
-	- Optimizations pipeline contains different phases
-	- Example : Typer Phase, Type Lowering Phase, Effect Linearization Phase
+**Turbofan Optimization Pipeline**
+Speculations
+- *Assumptions* are made about the object's type
+- `$Speculative.*`
+	- Example : `SpeculativeNumberBitwiseAnd`
 
-### Readmore Turbofan
+Reductions
+- *Strategies* used during optimizations to reduce Nodes
+- Nodes might be optimized away
+- `$Reduce.*`
+	- Example : `ReduceWordNAnd`
+
+Multiple Phases
+- Optimizations pipeline contains different phases
+- Example : Typer Phase, Type Lowering Phase, Effect Linearization Phase
+
+**Readmore Turbofan**
 - [An Introduction to Speculative Optimization in V8](https://benediktmeurer.de/2017/12/13/an-introduction-to-speculative-optimization-in-V8/)
 - [Digging into the TurboFan JIT](https://v8.dev/blog/turbofan-jit)
 - [Deoptimize me not, v8](https://darksi.de/a.deoptimize-me-not/)
@@ -335,22 +345,22 @@ When dealing with binary data or interfacing with Web APIs, memory management be
 ## Understanding Buffers
 Buffers are typically used to handle raw binary data, which is not natively supported by JavaScript's conventional data types such as strings and arrays. Buffers allow you to process binary streams of data more effectively.
 
-### Key Characteristics of Buffers:
-- **Fixed Size**: Buffers have a predefined size, which means once created, the amount of memory they consume cannot change.
-- **Raw Binary Data**: Buffers store raw bytes, unlike JavaScript strings that are encoded in UTF-16.
-- **Useful in Network and File Operations**: Buffers are particularly useful in low-level operations like interacting with network protocols, reading or writing binary files, or working with images, videos, and other media streams.
+**Key Characteristics of Buffers**
+- *Fixed Size*: Buffers have a predefined size, which means once created, the amount of memory they consume cannot change.
+- *Raw Binary Data*: Buffers store raw bytes, unlike JavaScript strings that are encoded in UTF-16.
+- *Useful in Network and File Operations*: Buffers are particularly useful in low-level operations like interacting with network protocols, reading or writing binary files, or working with images, videos, and other media streams.
 
 ## Array Buffers
-- An **ArrayBuffer** is a generic, fixed-length block of raw memory.
-- An ArrayBuffer doesn’t have any methods to manipulate this data; you need to use a **Typed Array** or **DataView** to access the memory.
+- An *ArrayBuffer* is a generic, fixed-length block of raw memory.
+- An ArrayBuffer doesn’t have any methods to manipulate this data; you need to use a *Typed Array* or *DataView* to access the memory.
 - Use Cases:
-	- **WebGL**: Typed arrays are essential in WebGL for handling 3D graphics, where binary data representing vertices, textures, and shaders needs to be passed directly to the GPU.
-	- **Networking**: When working with low-level protocols or binary streaming over WebSockets or other network interfaces.
-	- **File I/O**: Reading and writing binary files (e.g., images, audio files) using File APIs or interacting with file system streams in Node.js.
-	- **Multimedia**: Manipulating images, audio, and video data for encoding/decoding purposes.
-	- **WebAssembly**: Typed arrays are used in conjunction with WebAssembly to provide memory access for high-performance applications.
+	- *WebGL*: Typed arrays are essential in WebGL for handling 3D graphics, where binary data representing vertices, textures, and shaders needs to be passed directly to the GPU.
+	- *Networking*: When working with low-level protocols or binary streaming over WebSockets or other network interfaces.
+	- *File I/O*: Reading and writing binary files (e.g., images, audio files) using File APIs or interacting with file system streams in Node.js.
+	- *Multimedia*: Manipulating images, audio, and video data for encoding/decoding purposes.
+	- *WebAssembly*: Typed arrays are used in conjunction with WebAssembly to provide memory access for high-performance applications.
 
-### Typed Arrays
+**Typed Arrays**
 - Typed Arrays are array-like objects that provide a view over an ArrayBuffer, allowing you to read and write binary data directly.
 - Common Typed Array Types:
 	- **`Int8Array`**: 8-bit signed integer
@@ -360,7 +370,7 @@ Buffers are typically used to handle raw binary data, which is not natively supp
 	- **`Float32Array`**: 32-bit floating-point number
 	- **`Float64Array`**: 64-bit floating-point number
 
-### DataView
+**DataView**
 - Another way to manipulate ArrayBuffers, offering more flexibility than typed arrays.
 - Let you to access any area of the buffer using *a specific byte offset* and *value type*. This is important when dealing with complex binary formats in which data types may not be properly aligned.
 
@@ -369,9 +379,9 @@ Buffers are typically used to handle raw binary data, which is not natively supp
 ## Promises
 - A JavaScript object that indicates the eventual success (or failure) of an asynchronous action and its value. It serves as a placeholder for the outcome of an operation that hasn't yet finished but will at some time in the future.
 - Key Concepts
-	- **Pending**: The initial state. The operation is ongoing, and its result isn't available yet.
-	- **Fulfilled**: The operation has completed successfully, and the promise now holds the resulting value.
-	- **Rejected**: The operation failed, and the promise holds the reason for failure (typically an error object).
+	- *Pending*: The initial state. The operation is ongoing, and its result isn't available yet.
+	- *Fulfilled*: The operation has completed successfully, and the promise now holds the resulting value.
+	- *Rejected*: The operation failed, and the promise holds the reason for failure (typically an error object).
 
 ## Async/Await
 - Async/Await is a more current and syntactically clear approach to working with promises. Async/await was introduced in ES2017 (ES8) and allows asynchronous code to be expressed in a more synchronous, linear way, which improves readability and maintainability.
@@ -380,23 +390,23 @@ Buffers are typically used to handle raw binary data, which is not natively supp
 	- `await`: Pauses the execution of an `async` function until a promise settles (fulfills or rejects). It allows you to retrieve the resolved value without chaining `.then()` calls.
 
 ## Callbacks
-- **Function Arguments**: JavaScript's standard built-in callback system often passes functions as parameters.
-- **Object Converters**:
-    - **`valueOf`**: Converts an object to a primitive.
-    - **`toString`**: Converts an object to a string representation.
-- **Property Getters and Setters**:
+- *Function Arguments*: JavaScript's standard built-in callback system often passes functions as parameters.
+- *Object Converters*:
+    - `valueOf`: Converts an object to a primitive.
+    - `toString`: Converts an object to a string representation.
+- *Property Getters and Setters*:
     - These trigger automatically when properties are accessed or modified, allowing for more controlled property behavior.
-- **Proxy**: Proxies are often referred to as "meta-programming" tools because they let you modify the behavior of language constructs.
-    - **Property Lookup**: Custom behavior for property access.
-    - **Assignment**: Intercepts property assignment.
-    - **Function Invocation**: Controls function calls within a proxy object.
+- *Proxy*: Proxies are often referred to as "meta-programming" tools because they let you modify the behavior of language constructs.
+    - Property Lookup: Custom behavior for property access.
+    - Assignment: Intercepts property assignment.
+    - Function Invocation: Controls function calls within a proxy object.
     - Structure:
-        - **Target Object**: The object being proxied. It can be any type of object (including arrays or functions).
-        - **Handler Object**: This object contains *traps* (intercepting methods) that define custom behavior for operations performed on the proxy.
-- **Object Overrides**
+        - Target Object: The object being proxied. It can be any type of object (including arrays or functions).
+        - Handler Object: This object contains *traps* (intercepting methods) that define custom behavior for operations performed on the proxy.
+- *Object Overrides*
 	- Extending the default behavior of built-in objects such as Object, Array, Function, and User-defined objects.
-	- **Overriding Prototype Methods**: In JavaScript, you may override methods on the built-in object prototype chain.  
-	- **Overriding Constructors**: You may override object constructors to change how objects are formed.
+	- Overriding Prototype Methods: In JavaScript, you may override methods on the built-in object prototype chain.  
+	- Overriding Constructors: You may override object constructors to change how objects are formed.
     - [List of symbols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
 
 ---
