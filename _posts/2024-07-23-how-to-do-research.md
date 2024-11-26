@@ -232,8 +232,8 @@ Skimming
 Thorough Reading
 - Add specific facts, examples, and nuances to the mind map.
 - Color-code:
-       - **Red** for critical details.
-       - **Blue** for supporting concepts.
+    - *Red* for critical details.
+    - *Blue* for supporting concepts.
 
 **6. Use Zettelkasten for Details**
 
